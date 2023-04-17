@@ -11,21 +11,18 @@ class ConfigUtils {
         TaskDurationUtils.init(gradle)
     }
 
+
     /**
-     * 根据 depConfig 生成 dep
+     * 根据 modules 生成 dep
      */
     private static void generateDep(Gradle gradle) {
         def configs = [:]
-        for (Map.Entry<String, DepConfig> entry : Config.depConfig.entrySet()) {
+        for (Map.Entry<String, ModuleConfig> entry : Config.modules.entrySet()) {
             def (name, config) = [entry.key, entry.value]
-            if (config.pluginPath) {
-                config.dep = config.pluginPath
+            if (config.useLocal) {
+                config.dep = gradle.rootProject.findProject(name)
             } else {
-                if (config.useLocal) {
-                    config.dep = gradle.rootProject.findProject(config.projectPath)
-                } else {
-                    config.dep = config.remotePath
-                }
+                config.dep = config.remotePath
             }
             configs.put(name, config)
         }
@@ -37,21 +34,19 @@ class ConfigUtils {
             @Override
             void beforeEvaluate(Project project) {
                 // 在 project 的 build.gradle 前 do sth.
-                if (project.subprojects.isEmpty()) {
-                    if (project.path.contains(":plugin:")) {
-                        return
+                // 在 project 的 build.gradle 前 do sth.
+                if (project.name.contains("plugin")) {
+                    return
+                }
+                if (project.name.endsWith("_app")) {
+                    GLog.l(project.toString() + " applies buildApp.gradle")
+                    project.apply {
+                        from "${project.rootDir.path}/buildApp.gradle"
                     }
-                    if (project.name.endsWith("_app")) {
-                        GLog.l(project.toString() + " applies buildApp.gradle")
-
-                        project.apply {
-                            from "${project.rootDir.path}/buildApp.gradle"
-                        }
-                    } else {
-                        GLog.l(project.toString() + " applies buildLib.gradle")
-                        project.apply {
-                            from "${project.rootDir.path}/buildLib.gradle"
-                        }
+                } else {
+                    GLog.l(project.toString() + " applies buildLib.gradle")
+                    project.apply {
+                        from "${project.rootDir.path}/buildLib.gradle"
                     }
                 }
             }
@@ -65,8 +60,8 @@ class ConfigUtils {
 
     static getApplyPlugins() {
         def plugins = [:]
-        for (Map.Entry<String, DepConfig> entry : Config.depConfig.entrySet()) {
-            if (entry.value.isApply && entry.key.startsWith("plugin_")) {
+        for (Map.Entry<String, PluginConfig> entry : Config.plugins.entrySet()) {
+            if (entry.value.isApply) {
                 plugins.put(entry.key, entry.value)
             }
         }
@@ -76,7 +71,7 @@ class ConfigUtils {
 
     static getApplyPkgs() {
         def pkgs = [:]
-        for (Map.Entry<String, DepConfig> entry : Config.depConfig.entrySet()) {
+        for (Map.Entry<String, ModuleConfig> entry : Config.modules.entrySet()) {
             if (entry.value.isApply && entry.key.endsWith("_pkg")) {
                 pkgs.put(entry.key, entry.value)
             }
@@ -87,7 +82,7 @@ class ConfigUtils {
 
     static getApplyExports() {
         def exports = [:]
-        for (Map.Entry<String, DepConfig> entry : Config.depConfig.entrySet()) {
+        for (Map.Entry<String, ModuleConfig> entry : Config.modules.entrySet()) {
             if (entry.value.isApply && entry.key.endsWith("_export")) {
                 exports.put(entry.key, entry.value)
             }
