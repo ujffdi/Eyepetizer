@@ -20,6 +20,7 @@ class Config {
     static mojitoVersion = "1.8.7"
     static pictureSelectorVersion = "v3.10.9"
     static coilVersion = "2.3.0"
+    static paging3version = "3.1.1"
 
     static modules = [
             /*Don't delete this line*/
@@ -73,8 +74,8 @@ class Config {
             // 存储数据
             datastore               : new LibConfig(path: "androidx.datastore:datastore-preferences:1.0.0"),
             // 分页
-            paging3                 : new LibConfig(path: "androidx.paging:paging-runtime:3.1.1"),
-            paging3ktx              : new LibConfig(path: "androidx.paging:paging-runtime-ktx:3.1.1"),
+            paging3                 : new LibConfig(path: "androidx.paging:paging-runtime:$paging3version"),
+            paging3ktx              : new LibConfig(path: "androidx.paging:paging-runtime-ktx:$paging3version"),
             // 导航栏
             navigation              : new LibConfig(path: "androidx.navigation:navigation-fragment-ktx:$navVersion"),
             navigationKtx           : new LibConfig(path: "androidx.navigation:navigation-ui-ktx:$navVersion"),

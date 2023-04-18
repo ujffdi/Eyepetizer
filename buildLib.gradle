@@ -1,6 +1,7 @@
 apply {
     plugin "com.android.library"
     plugin "org.jetbrains.kotlin.android"
+    plugin "kotlin-kapt"
 }
 
 android {
@@ -44,6 +45,8 @@ dependencies {
     } else if (project.name.endsWith("_export")) {
         api Config.modules.lib_common.dep
     }
+
+    kapt Config.libs.routerCompiler.path
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

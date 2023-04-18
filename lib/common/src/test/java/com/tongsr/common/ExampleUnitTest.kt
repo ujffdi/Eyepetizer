@@ -1,4 +1,4 @@
-package com.tongsr.commony
+package com.tongsr.common
 
 import org.junit.Test
 

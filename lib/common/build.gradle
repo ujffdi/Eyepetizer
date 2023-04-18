@@ -1,5 +1,5 @@
 android {
-    namespace 'com.tongsr.commony'
+    namespace 'com.tongsr.common'
 }
 
 dependencies {

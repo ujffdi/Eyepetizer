@@ -3,6 +3,7 @@ android {
 }
 
 dependencies {
-
-
+    api Config.modules.lib_core.dep
+    api Config.modules.lib_router.dep
+    api Config.modules.lib_data.dep
 }
