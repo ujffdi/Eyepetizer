@@ -16,8 +16,8 @@
     {"isApply": true, "useLocal": true, "localPath": ":feature:square:pkg"},
     {"isApply": true, "useLocal": true, "localPath": ":feature:square:export"},
 
-    {"isApply": true, "useLocal": true, "localPath": ":feature:discover:pkg"},
-    {"isApply": true, "useLocal": true, "localPath": ":feature:discover:export"},
+    {"isApply": true, "useLocal": true, "localPath": ":feature:found:pkg"},
+    {"isApply": true, "useLocal": true, "localPath": ":feature:found:export"},
 
     {"isApply": true, "useLocal": true, "localPath": ":feature:user:pkg"},
     {"isApply": true, "useLocal": true, "localPath": ":feature:user:export"},
