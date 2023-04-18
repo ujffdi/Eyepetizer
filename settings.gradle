@@ -13,19 +13,5 @@ dependencyResolutionManagement {
     }
 }
 rootProject.name = "Eyepetizer"
-include ':feature:launcher'
-include ':lib:base'
-include ':lib:core'
-include ':lib:common'
-include ':feature:test:pkg'
-include ':feature:test:export'
-include ':feature:user:pkg'
-include ':feature:user:export'
-include ':feature:home:pkg'
-include ':feature:home:export'
-include ':feature:found:pkg'
-include ':feature:found:export'
-include ':feature:square:pkg'
-include ':feature:square:export'
-include ':lib:router'
-include ':lib:data'
+
+apply from: 'module_config.gradle'

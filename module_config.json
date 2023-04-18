@@ -1,35 +1,28 @@
 {
-  "appConfigDesc": "appConfig 配置的是可以跑 app 的模块，git 提交务必只包含 launcher",
-  "appConfig": ["launcher","test","eyepetizer"],
-
+  "desc": "提交 git 时需要检查下配置是否正确！！！",
+  "appConfigDesc": "appConfig 配置的是可以跑 app 的模块",
+  "appConfig": ["feature_launcher_app","feature_eyepetizer_app","feature_test_app"],
   "pkgConfigDesc": "pkgConfig 配置的是要依赖的功能包，为空则依赖全部，git 提交务必为空",
   "pkgConfig": [],
-
-  "proConfigDesc": "proConfig 配置的是使用本地还是仓库，优先级低于 appConfig 和 pkgConfig",
-  "proConfig": [
-    {"isApply": true, "useLocal": true, "localPath": ":feature:launcher:app"},
-    {"isApply": true, "useLocal": true, "localPath": ":feature:eyepetizer:app"},
-
-    {"isApply": true, "useLocal": true, "localPath": ":feature:home:pkg"},
-    {"isApply": true, "useLocal": true, "localPath": ":feature:home:export"},
-
-    {"isApply": true, "useLocal": true, "localPath": ":feature:square:pkg"},
-    {"isApply": true, "useLocal": true, "localPath": ":feature:square:export"},
-
-    {"isApply": true, "useLocal": true, "localPath": ":feature:found:pkg"},
-    {"isApply": true, "useLocal": true, "localPath": ":feature:found:export"},
-
-    {"isApply": true, "useLocal": true, "localPath": ":feature:user:pkg"},
-    {"isApply": true, "useLocal": true, "localPath": ":feature:user:export"},
-
-    {"isApply": true, "useLocal": true, "localPath": ":feature:test:app"},
-    {"isApply": true, "useLocal": true, "localPath": ":feature:test:pkg"},
-    {"isApply": true, "useLocal": true, "localPath": ":feature:test:export"},
-
-    {"isApply": true, "useLocal": true, "localPath": ":lib:core"},
-    {"isApply": true, "useLocal": true, "localPath": ":lib:base"},
-    {"isApply": true, "useLocal": true, "localPath": ":lib:common"},
-    {"isApply": true, "useLocal": true, "localPath": ":lib:data"},
-    {"isApply": true, "useLocal": true, "localPath": ":lib:router"}
+  "moduleConfigDesc": "proConfig 配置的是使用本地还是仓库，优先级低于 appConfig 和 pkgConfig",
+  "moduleConfig": [
+    {"name": "feature_launcher_app", "isApply": true, "useLocal": true, "localPath": "./feature/launcher/app"},
+    {"name": "feature_eyepetizer_app", "isApply": true, "useLocal": true, "localPath": "./feature/eyepetizer/app"},
+    {"name": "feature_home_pkg", "isApply": true, "useLocal": true, "localPath": "./feature/home/pkg"},
+    {"name": "feature_home_export", "isApply": true, "useLocal": true, "localPath": "./feature/home/export"},
+    {"name": "feature_square_pkg", "isApply": true, "useLocal": true, "localPath": "./feature/square/pkg"},
+    {"name": "feature_square_export", "isApply": true, "useLocal": true, "localPath": "./feature/square/export"},
+    {"name": "feature_found_pkg", "isApply": true, "useLocal": true, "localPath": "./feature/found/pkg"},
+    {"name": "feature_found_export", "isApply": true, "useLocal": true, "localPath": "./feature/found/export"},
+    {"name": "feature_user_pkg", "isApply": true, "useLocal": true, "localPath": "./feature/user/pkg"},
+    {"name": "feature_user_export", "isApply": true, "useLocal": true, "localPath": "./feature/user/export"},
+    {"name": "feature_test_app", "isApply": true, "useLocal": true, "localPath": "./feature/test/app"},
+    {"name": "feature_test_pkg", "isApply": true, "useLocal": true, "localPath": "./feature/test/pkg"},
+    {"name": "feature_test_export", "isApply": true, "useLocal": true, "localPath": "./feature/test/export"},
+    {"name": "lib_core", "isApply": true, "useLocal": true, "localPath": "./lib/core"},
+    {"name": "lib_base", "isApply": true, "useLocal": true, "localPath": "./lib/base"},
+    {"name": "lib_common", "isApply": true, "useLocal": true, "localPath": "./lib/common"},
+    {"name": "lib_data", "isApply": true, "useLocal": true, "localPath": "./lib/data"},
+    {"name": "lib_router", "isApply": true, "useLocal": true, "localPath": "./lib/router"}
   ]
 }

@@ -1,0 +1,51 @@
+apply {
+    plugin "com.android.library"
+    plugin "org.jetbrains.kotlin.android"
+}
+
+android {
+    compileSdk Config.compileSdkVersion
+
+    defaultConfig {
+        minSdk Config.minSdkVersion
+        targetSdk Config.targetSdkVersion
+
+        consumerProguardFiles 'proguard-rules.pro'
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    viewBinding {
+        enabled = true
+    }
+
+}
+
+dependencies {
+    if (project.name.endsWith("_pkg") || project.name.endsWith("_mock")) {
+        // if module's name equals 'pkg', api all of export
+        for (def entrySet : ConfigUtils.getApplyExports().entrySet()) {
+            api entrySet.value.dep
+        }
+    } else if (project.name.endsWith("_export")) {
+        api Config.modules.lib_common.dep
+    }
+
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
