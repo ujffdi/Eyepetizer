@@ -3,5 +3,25 @@ android {
 }
 
 dependencies {
-
+    api Config.libs.androidxCore.path
+    api Config.libs.activityKtx.path
+    api Config.libs.fragmentKtx.path
+    api Config.libs.lifecycleRuntimeKtx.path
+    api Config.libs.lifecycleLivedataCodeKtx.path
+    api Config.libs.androidxAppcompat.path
+    api Config.libs.androidxMaterial.path
+    api Config.libs.constraintLayout.path
+    api Config.libs.paging3.path
+    api Config.libs.paging3ktx.path
+    api Config.libs.navigation.path
+    api Config.libs.navigationKtx.path
+    api Config.libs.recyclerview.path
+    api Config.libs.coil.path
+    api Config.libs.coilGif.path
+    api Config.libs.coilSvg.path
+    api Config.libs.coilVideo.path
+    api Config.libs.coreCoroutines.path
+    api Config.libs.androidCoroutines.path
+    api Config.libs.viewBindingUtils.path
+    api Config.libs.timber.path
 }
