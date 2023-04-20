@@ -24,4 +24,5 @@ dependencies {
     api Config.libs.androidCoroutines.path
     api Config.libs.viewBindingUtils.path
     api Config.libs.timber.path
+    api Config.libs.gson.path
 }

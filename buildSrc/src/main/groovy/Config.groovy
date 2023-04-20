@@ -89,7 +89,7 @@ class Config {
             // 协程
             coreCoroutines          : new LibConfig(path: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"),
             androidCoroutines       : new LibConfig(path: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"),
-            gson                    : new LibConfig(path: "com.google.code.gson:gson:2.10"),
+            gson                    : new LibConfig(path: "com.google.code.gson:gson:2.10.1"),
             // 工具集
             utils                   : new LibConfig(path: "com.blankj:utilcodex:1.31.1"),
             // 委托方式实现ViewBinding

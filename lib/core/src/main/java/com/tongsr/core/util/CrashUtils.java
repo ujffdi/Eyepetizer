@@ -122,8 +122,8 @@ public final class CrashUtils {
     }
 
     public static final class CrashInfo {
-        private final UtilsBridge.FileHead mFileHeadProvider;
-        private final Throwable mThrowable;
+        private UtilsBridge.FileHead mFileHeadProvider;
+        private Throwable mThrowable;
 
         private CrashInfo(String time, Throwable throwable) {
             mThrowable = throwable;
@@ -131,7 +131,7 @@ public final class CrashUtils {
             mFileHeadProvider.addFirst("Time Of Crash", time);
         }
 
-        public void addExtraHead(Map<String, String> extraHead) {
+        public final void addExtraHead(Map<String, String> extraHead) {
             mFileHeadProvider.append(extraHead);
         }
 
@@ -143,7 +143,6 @@ public final class CrashUtils {
             return mThrowable;
         }
 
-        @NonNull
         @Override
         public String toString() {
             return mFileHeadProvider.toString() + UtilsBridge.getFullStackTrace(mThrowable);
