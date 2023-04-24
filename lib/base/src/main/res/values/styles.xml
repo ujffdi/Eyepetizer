@@ -80,8 +80,8 @@
 
     <!-- 缩放动画 -->
     <style name="DialogDefaultAnimation" parent="@android:style/Animation">
-        <item name="android:windowEnterAnimation">@anim/window_scale_in</item>
-        <item name="android:windowExitAnimation">@anim/window_scale_out</item>
+        <item name="android:windowEnterAnimation">@anim/window_ios_in</item>
+        <item name="android:windowExitAnimation">@anim/window_ios_out</item>
     </style>
 
     <style name="BottomNavigationViewStyle" parent="Widget.Design.BottomNavigationView">

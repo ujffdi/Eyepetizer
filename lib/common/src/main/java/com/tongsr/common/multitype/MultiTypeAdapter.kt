@@ -21,7 +21,6 @@ import android.view.ViewGroup
 import androidx.annotation.CheckResult
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
-import com.yinyuan.mobile.component.multitype.*
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.reflect.KClass
 

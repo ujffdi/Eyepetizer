@@ -14,7 +14,7 @@ class Config {
     static routerVersion = "1.1.2"
     static retrofitVersion = "2.9.0"
     static coroutinesVersion = "1.6.4"
-    static androidxVersion = "2.5.1"
+    static androidxVersion = "2.6.1"
     static navVersion = "2.5.3"
     static roomVersion = "2.5.0"
     static mojitoVersion = "1.8.7"
@@ -51,8 +51,8 @@ class Config {
     ]
 
     static libs = [
-            androidxCore            : new LibConfig(path: "androidx.core:core-ktx:1.8.0"),
-            activityKtx             : new LibConfig(path: "androidx.activity:activity-ktx:1.5.1"),
+            androidxCore            : new LibConfig(path: "androidx.core:core-ktx:1.10.0"),
+            activityKtx             : new LibConfig(path: "androidx.activity:activity-ktx:1.6.0"),
             fragmentKtx             : new LibConfig(path: "androidx.fragment:fragment-ktx:1.5.4"),
             lifecycleRuntimeKtx     : new LibConfig(path: "androidx.lifecycle:lifecycle-runtime-ktx:$androidxVersion"),
             lifecycleViewModelKtx   : new LibConfig(path: "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidxVersion"),
@@ -60,7 +60,7 @@ class Config {
             lifecycleLivedataCodeKtx: new LibConfig(path: "androidx.lifecycle:lifecycle-livedata-core-ktx:$androidxVersion"),
             androidxAppcompat       : new LibConfig(path: "androidx.appcompat:appcompat:1.6.1"),
             // material风格UI
-            androidxMaterial        : new LibConfig(path: "com.google.android.material:material:1.6.1"),
+            androidxMaterial        : new LibConfig(path: "com.google.android.material:material:1.8.0"),
             constraintLayout        : new LibConfig(path: "androidx.constraintlayout:constraintlayout:2.1.4"),
             // 路由框架
             routerApi               : new LibConfig(path: "cn.therouter:router:$routerVersion"),
@@ -90,9 +90,9 @@ class Config {
             coreCoroutines          : new LibConfig(path: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"),
             androidCoroutines       : new LibConfig(path: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"),
             gson                    : new LibConfig(path: "com.google.code.gson:gson:2.10.1"),
-            // 工具集
+            // 工具集，已用源码的形式引入
             utils                   : new LibConfig(path: "com.blankj:utilcodex:1.31.1"),
-            // 委托方式实现ViewBinding
+            // 委托方式实现 ViewBinding
             viewBindingUtils        : new LibConfig(path: "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"),
             // 用于线上的日志
             timber                  : new LibConfig(path: "com.jakewharton.timber:timber:5.0.1"),

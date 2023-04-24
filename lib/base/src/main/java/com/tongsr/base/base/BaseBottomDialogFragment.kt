@@ -14,7 +14,7 @@ import timber.log.Timber
  * @version 1.0
  * @date 2022/11/22
  * @email ujffdtfivkg@gmail.com
- * @description BaseBottomDialogFragment
+ * @description BaseBottomDialogFragment。使用 BaseDialogFragment 设置动画显示在底部几乎相等的功能
  */
 abstract class BaseBottomDialogFragment: BottomSheetDialogFragment(), IBaseView {
 

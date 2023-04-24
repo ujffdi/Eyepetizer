@@ -18,7 +18,6 @@ package com.tongsr.common.multitype
 
 import androidx.annotation.CheckResult
 import com.tongsr.common.multitype.*
-import com.yinyuan.mobile.component.multitype.*
 
 /**
  * @author Drakeet Xu
