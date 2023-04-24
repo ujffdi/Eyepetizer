@@ -4,9 +4,9 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
-import com.blankj.utilcode.util.AppUtils
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.tongsr.core.R
+import com.tongsr.base.R
+import com.tongsr.core.util.AppUtils
 import timber.log.Timber
 
 /**

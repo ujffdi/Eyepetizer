@@ -7,7 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import com.blankj.utilcode.util.AppUtils
+import com.tongsr.core.util.AppUtils
 import timber.log.Timber
 
 

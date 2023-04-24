@@ -5,9 +5,10 @@ import android.content.Context
 import android.os.Bundle
 import android.view.*
 import androidx.appcompat.app.AppCompatDialogFragment
-import com.blankj.utilcode.util.AppUtils
-import com.blankj.utilcode.util.ScreenUtils
-import com.tongsr.core.R
+import com.tongsr.base.R
+
+import com.tongsr.core.util.AppUtils
+import com.tongsr.core.util.ScreenUtils
 import timber.log.Timber
 
 /**

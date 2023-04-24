@@ -1,11 +1,6 @@
 package com.tongsr.base.base
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
-import com.tongsr.data.remote.entity.ApiResult
-import com.tongsr.data.remote.exception.ApiException
 import kotlinx.coroutines.flow.*
 
 /**
@@ -17,9 +12,9 @@ import kotlinx.coroutines.flow.*
  */
 abstract class BaseViewModel : ViewModel() {
 
-    private val _apiException = MutableLiveData<ApiException>()
-
-    val apiException: LiveData<ApiException> = _apiException
+//    private val _apiException = MutableLiveData<ApiException>()
+//
+//    val apiException: LiveData<ApiException> = _apiException
 
 }
 
@@ -32,25 +27,25 @@ abstract class BaseViewModel : ViewModel() {
  * @param onCompletion request completion
  * @param onError request error
  */
-inline fun <T> ViewModel.executeRequest(
-    request: Flow<ApiResult<T>>,
-    crossinline onSuccess: (T) -> Unit,
-    crossinline onStart: () -> Unit = {},
-    crossinline onCompletion: () -> Unit = {},
-    crossinline onError: (Throwable) -> Unit = {}
-) {
-    request.onStart { onStart() }
-        .onCompletion { onCompletion() }
-        .catch { onError(it) }
-        .onEach { result ->
-            if (result.code == 0) {
-                onSuccess(result.data)
-            } else {
-                onError(ApiException(result.code, result.message))
-            }
-        }.launchIn(viewModelScope)
-
-}
+//inline fun <T> ViewModel.executeRequest(
+//    request: Flow<ApiResult<T>>,
+//    crossinline onSuccess: (T) -> Unit,
+//    crossinline onStart: () -> Unit = {},
+//    crossinline onCompletion: () -> Unit = {},
+//    crossinline onError: (Throwable) -> Unit = {}
+//) {
+//    request.onStart { onStart() }
+//        .onCompletion { onCompletion() }
+//        .catch { onError(it) }
+//        .onEach { result ->
+//            if (result.code == 0) {
+//                onSuccess(result.data)
+//            } else {
+//                onError(ApiException(result.code, result.message))
+//            }
+//        }.launchIn(viewModelScope)
+//
+//}
 
 
 

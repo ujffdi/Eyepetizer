@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import java.lang.Runnable
-import com.blankj.utilcode.util.ThreadUtils
+import com.tongsr.core.util.ThreadUtils
 
 /**
  * @author Tongsr
