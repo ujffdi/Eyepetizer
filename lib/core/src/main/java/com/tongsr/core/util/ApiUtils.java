@@ -24,9 +24,8 @@ import java.util.concurrent.ConcurrentHashMap;
 public final class ApiUtils {
 
     private static final String TAG = "ApiUtils";
-
-    private Map<Class, BaseApi> mApiMap           = new ConcurrentHashMap<>();
-    private Map<Class, Class>   mInjectApiImplMap = new HashMap<>();
+    private final Map<Class, BaseApi> mApiMap           = new ConcurrentHashMap<>();
+    private final Map<Class, Class>   mInjectApiImplMap = new HashMap<>();
 
     private ApiUtils() {
         init();
@@ -64,6 +63,7 @@ public final class ApiUtils {
         return getInstance().toString();
     }
 
+    @NonNull
     @Override
     public String toString() {
         return "ApiUtils: " + mInjectApiImplMap;

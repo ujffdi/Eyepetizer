@@ -57,9 +57,20 @@ public final class BarUtils {
      * @return the status bar's height
      */
     public static int getStatusBarHeight() {
-        Resources resources = Resources.getSystem();
-        int resourceId = resources.getIdentifier("status_bar_height", "dimen", "android");
-        return resources.getDimensionPixelSize(resourceId);
+        int result = 0;
+        try {
+            int resourceId = Resources.getSystem().getIdentifier("status_bar_height", "dimen", "android");
+            if (resourceId > 0) {
+                int sizeOne = Utils.getApp().getResources().getDimensionPixelSize(resourceId);
+                float densityOne = Utils.getApp().getResources().getDisplayMetrics().density;
+                float densityTwo = Resources.getSystem().getDisplayMetrics().density;
+                float f = sizeOne * densityTwo / densityOne;
+                return (int) ((f >= 0) ? (f + 0.5f) : (f - 0.5f));
+            }
+        } catch (Resources.NotFoundException ignored) {
+            return 0;
+        }
+        return result;
     }
 
     /**

@@ -103,9 +103,7 @@ public final class CollectionUtils {
     public static <E> HashSet<E> newHashSet(E... array) {
         HashSet<E> set = new HashSet<>();
         if (array == null || array.length == 0) return set;
-        for (E e : array) {
-            set.add(e);
-        }
+        Collections.addAll(set, array);
         return set;
     }
 
@@ -124,9 +122,7 @@ public final class CollectionUtils {
     public static <E> TreeSet<E> newTreeSet(Comparator<E> comparator, E... array) {
         TreeSet<E> set = new TreeSet<>(comparator);
         if (array == null || array.length == 0) return set;
-        for (E e : array) {
-            set.add(e);
-        }
+        Collections.addAll(set, array);
         return set;
     }
 

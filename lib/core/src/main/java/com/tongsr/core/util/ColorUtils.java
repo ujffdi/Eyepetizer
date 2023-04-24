@@ -176,12 +176,12 @@ public final class ColorUtils {
      * @return color-string
      */
     public static String int2ArgbString(@ColorInt final int colorInt) {
-        String color = Integer.toHexString(colorInt);
+        StringBuilder color = new StringBuilder(Integer.toHexString(colorInt));
         while (color.length() < 6) {
-            color = "0" + color;
+            color.insert(0, "0");
         }
         while (color.length() < 8) {
-            color = "f" + color;
+            color.insert(0, "f");
         }
         return "#" + color;
     }

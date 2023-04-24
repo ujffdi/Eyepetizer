@@ -97,9 +97,11 @@ public final class ConvertUtils {
         int byteLen = bits.length() / 8;
         // add "0" until length to 8 times
         if (lenMod != 0) {
+            StringBuilder bitsBuilder = new StringBuilder(bits);
             for (int i = lenMod; i < 8; i++) {
-                bits = "0" + bits;
+                bitsBuilder.insert(0, "0");
             }
+            bits = bitsBuilder.toString();
             byteLen++;
         }
         byte[] bytes = new byte[byteLen];

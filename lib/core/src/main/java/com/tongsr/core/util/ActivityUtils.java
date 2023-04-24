@@ -1,6 +1,7 @@
 package com.tongsr.core.util;
 
 import android.app.Activity;
+import android.app.Fragment;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.ContextWrapper;
@@ -12,19 +13,20 @@ import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.util.Pair;
 import android.view.View;
 
 import androidx.annotation.AnimRes;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityOptionsCompat;
-import androidx.core.util.Pair;
-import androidx.fragment.app.Fragment;
 
 import java.lang.ref.WeakReference;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
+
+import timber.log.Timber;
 
 /**
  * <pre>
@@ -2036,7 +2038,7 @@ public final class ActivityUtils {
                 activity.startActivityForResult(intent, requestCode);
             }
         } catch (Exception e) {
-            Log.e("ActivityUtils", "An exception occurred in startActivityForResult, error message: " + e.getLocalizedMessage());
+            Timber.tag("ActivityUtils").e("An exception occurred in startActivityForResult, error message: %s", e.getLocalizedMessage());
             return false;
         }
         return true;
@@ -2074,7 +2076,7 @@ public final class ActivityUtils {
                                                   final int requestCode,
                                                   @Nullable final Bundle options) {
         if (fragment.getActivity() == null) {
-            Log.e("ActivityUtils", "Fragment " + fragment + " not attached to Activity");
+            Timber.tag("ActivityUtils").e("Fragment " + fragment + " not attached to Activity");
             return false;
         }
         try {
@@ -2084,7 +2086,7 @@ public final class ActivityUtils {
                 fragment.startActivityForResult(intent, requestCode);
             }
         } catch (Exception e) {
-            Log.e("ActivityUtils", "An exception occurred in fragment.startActivityForResult, error message: " + e.getLocalizedMessage());
+            Timber.tag("ActivityUtils").e("An exception occurred in fragment.startActivityForResult, error message: %s", e.getLocalizedMessage());
             return false;
         }
         return true;

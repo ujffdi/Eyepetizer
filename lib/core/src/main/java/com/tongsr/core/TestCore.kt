@@ -6,4 +6,8 @@ package com.tongsr.core
  * @description
  */
 class TestCore {
+
+    internal var a = 0
+
+    var b = 0
 }
