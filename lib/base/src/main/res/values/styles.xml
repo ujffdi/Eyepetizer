@@ -34,6 +34,18 @@
         <item name="android:includeFontPadding">false</item>
     </style>
 
+    <!-- 全屏主题样式 -->
+    <style name="FullScreenTheme" parent="AppTheme">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
+    <!-- 闪屏页主题样式 -->
+    <style name="SplashTheme" parent="FullScreenTheme">
+        <!-- https://www.jianshu.com/p/d0d907754603 -->
+        <item name="android:windowIsTranslucent">false</item>
+        <item name="android:windowDisablePreview">true</item>
+    </style>
+
     <!-- 对话框默认主题 -->
     <style name="BaseDialogTheme" parent="Theme.AppCompat.DayNight.Dialog.Alert"><!-- @android:style/Theme.Dialog -->
         <!-- 无边框 -->
@@ -49,8 +61,8 @@
         <!-- 无标题 -->
         <item name="android:windowNoTitle">true</item>
         <!-- 动画效果 -->
-        <!--        <item name="android:windowEnterAnimation">@anim/window_scale_in</item>-->
-        <!--        <item name="android:windowExitAnimation">@anim/window_scale_out</item>-->
+        <!--<item name="android:windowEnterAnimation">@anim/window_scale_in</item>-->
+        <!--<item name="android:windowExitAnimation">@anim/window_scale_out</item>-->
         <!-- Base.Theme.AppCompat.Light.Dialog.Alert 特有的属性，用于指定默认宽度，这里需要禁用 -->
         <item name="android:windowMinWidthMajor">0dp</item>
         <item name="android:windowMinWidthMinor">0dp</item>
@@ -78,14 +90,10 @@
         <item name="android:background">@color/transparent</item>
     </style>
 
-    <!-- 缩放动画 -->
+    <!-- 默认动画 -->
     <style name="DialogDefaultAnimation" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/window_ios_in</item>
         <item name="android:windowExitAnimation">@anim/window_ios_out</item>
-    </style>
-
-    <style name="BottomNavigationViewStyle" parent="Widget.Design.BottomNavigationView">
-        <item name="android:background">@color/white</item>
     </style>
 
 </resources>
