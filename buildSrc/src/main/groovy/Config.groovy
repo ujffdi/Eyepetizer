@@ -90,6 +90,8 @@ class Config {
             coreCoroutines          : new LibConfig(path: "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion"),
             androidCoroutines       : new LibConfig(path: "org.jetbrains.kotlinx:kotlinx-coroutines-android:$coroutinesVersion"),
             gson                    : new LibConfig(path: "com.google.code.gson:gson:2.10.1"),
+            // 代替 Gson，性能比 Gson 高
+            moshi                   : new LibConfig(path: "com.squareup.moshi:moshi-kotlin:1.14.0"),
             // 工具集，已用源码的形式引入
             utils                   : new LibConfig(path: "com.blankj:utilcodex:1.31.1"),
             // 委托方式实现 ViewBinding
