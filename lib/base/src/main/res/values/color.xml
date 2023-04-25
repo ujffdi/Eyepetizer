@@ -20,6 +20,7 @@
 
     <!-- 熊猫色（黑白背景通吃） -->
     <color name="panda">#FF757575</color>
+    <color name="line">#FF757575</color>
 
     <!-- 白色 -->
     <color name="white">#FFFFFFFF</color>

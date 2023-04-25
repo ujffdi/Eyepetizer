@@ -8,7 +8,7 @@ import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.core.app.ActivityCompat
-import com.blankj.utilcode.util.ActivityUtils
+import com.tongsr.core.util.ActivityUtils
 
 
 /**

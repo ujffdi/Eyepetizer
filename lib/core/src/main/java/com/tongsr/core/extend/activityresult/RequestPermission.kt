@@ -13,8 +13,8 @@ import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.launch
 import androidx.core.app.ActivityCompat
-import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.PermissionUtils
+import com.tongsr.core.util.ActivityUtils
+import com.tongsr.core.util.PermissionUtils
 
 /**
  * 注册请求单个权限的启动器
@@ -33,7 +33,8 @@ fun ActivityResultCaller.registerForRequestPermissionResult(
     permission = it.first
     when {
       it.second -> onGranted()
-      !permission.isNullOrEmpty() && ActivityCompat.shouldShowRequestPermissionRationale(ActivityUtils.getTopActivity(), permission!!) ->
+      !permission.isNullOrEmpty() && ActivityCompat.shouldShowRequestPermissionRationale(
+        ActivityUtils.getTopActivity(), permission!!) ->
         onShowRequestRationale(PermissionScope { permissionLauncher?.launch(permission) })
       else -> onDenied(AppSettingsScope { launchAppSettingsLauncher.launch() })
     }
