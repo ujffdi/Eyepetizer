@@ -20,9 +20,9 @@ abstract class ViewDelegate<T, V : View> : ItemViewDelegate<T, ViewDelegate.Hold
 
   protected val View.layoutPosition: Int get() = holder.layoutPosition
 
-//  protected val View.absoluteAdapterPosition: Int get() = holder.absoluteAdapterPosition
+  protected val View.absoluteAdapterPosition: Int get() = holder.absoluteAdapterPosition
 
-//  protected val View.bindingAdapterPosition: Int get() = holder.bindingAdapterPosition
+  protected val View.bindingAdapterPosition: Int get() = holder.bindingAdapterPosition
 
   abstract fun onCreateView(context: Context): V
 
