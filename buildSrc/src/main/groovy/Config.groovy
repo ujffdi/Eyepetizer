@@ -68,8 +68,9 @@ class Config {
             // 网络
             retrofit                : new LibConfig(path: "com.squareup.retrofit2:retrofit:$retrofitVersion"),
             okhttp                  : new LibConfig(path: "com.squareup.okhttp3:okhttp:4.10.0"),
-            retrofitConverter       : new LibConfig(path: "com.squareup.retrofit2:converter-gson:$retrofitVersion"),
-            // 启动框架。TheRouter有类似的功能
+            retrofitGsonConverter   : new LibConfig(path: "com.squareup.retrofit2:converter-gson:$retrofitVersion"),
+            retrofitMoshiConverter  : new LibConfig(path: "com.squareup.retrofit2:converter-moshi:2.4.0"),
+            // 启动框架。TheRouter 有类似的功能
             startup                 : new LibConfig(path: "androidx.startup:startup-runtime:1.1.1"),
             // 存储数据
             datastore               : new LibConfig(path: "androidx.datastore:datastore-preferences:1.0.0"),

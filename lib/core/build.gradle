@@ -25,4 +25,6 @@ dependencies {
     api Config.libs.viewBindingUtils.path
     api Config.libs.timber.path
     api Config.libs.gson.path
+    api Config.libs.moshi.path
+
 }

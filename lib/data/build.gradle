@@ -6,7 +6,8 @@ dependencies {
 
     // 网络数据
     api Config.libs.retrofit.path
-    api Config.libs.retrofitConverter.path
+    api Config.libs.retrofitGsonConverter.path
+    api Config.libs.retrofitMoshiConverter.path
     api Config.libs.okhttp.path
     // 本地数据
     api Config.libs.datastore.path
