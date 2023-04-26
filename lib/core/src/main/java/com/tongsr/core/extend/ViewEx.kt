@@ -4,6 +4,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.core.content.ContextCompat
 
@@ -19,48 +20,44 @@ fun TextView.setColor(resId: Int) {
     this.setTextColor(ContextCompat.getColor(this.context, resId))
 }
 
-fun TextView.setNullDrawable() {
-    this.setCompoundDrawables(null, null, null, null)
+fun TextView.clearDrawable() {
+    setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, null)
 }
 
 /**
  * 设置左侧图标
  * @param resId 资源Id
  */
-fun TextView.setDrawableLeft(resId: Int) {
+fun TextView.setDrawableLeft(@DrawableRes resId: Int) {
     val drawable = ContextCompat.getDrawable(this.context, resId)
-    drawable?.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
-    this.setCompoundDrawables(drawable, null, null, null)
+    setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
 }
 
 /**
  * 设置右侧图标
  * @param resId 资源Id
  */
-fun TextView.setDrawableRight(resId: Int) {
+fun TextView.setDrawableRight(@DrawableRes resId: Int) {
     val drawable = ContextCompat.getDrawable(this.context, resId)
-    drawable?.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
-    this.setCompoundDrawables(null, null, drawable, null)
+    setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, drawable, null)
 }
 
 /**
  * 设置顶部图标
  * @param resId 资源Id
  */
-fun TextView.setDrawableTop(resId: Int) {
+fun TextView.setDrawableTop(@DrawableRes resId: Int) {
     val drawable = ContextCompat.getDrawable(this.context, resId)
-    drawable?.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
-    this.setCompoundDrawables(null, drawable, null, null)
+    setCompoundDrawablesRelativeWithIntrinsicBounds(null, drawable, null, null)
 }
 
 /**
  * 设置底部图标
  * @param resId 资源Id
  */
-fun TextView.setDrawableBottom(resId: Int) {
+fun TextView.setDrawableBottom(@DrawableRes resId: Int) {
     val drawable = ContextCompat.getDrawable(this.context, resId)
-    drawable?.setBounds(0, 0, drawable.minimumWidth, drawable.minimumHeight)
-    this.setCompoundDrawables(null, null, null, drawable)
+    setCompoundDrawablesRelativeWithIntrinsicBounds(null, null, null, drawable)
 }
 
 inline fun <reified V : View> ViewGroup.inflate(
