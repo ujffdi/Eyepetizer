@@ -1,6 +1,7 @@
 package com.tongsr.common
 
 import android.content.Context
+import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
 import android.os.Build
 import android.widget.ImageView
@@ -29,7 +30,7 @@ object CoilUtils {
     fun init(context: Context) {
         val imageLoader = ImageLoader.Builder(context)
             // 简单判断大于 Android 10 使用 ARGB_8888
-//            .bitmapConfig(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) Bitmap.Config.ARGB_8888 else Bitmap.Config.RGB_565)
+            .bitmapConfig(if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) Bitmap.Config.ARGB_8888 else Bitmap.Config.RGB_565)
             .diskCachePolicy(CachePolicy.ENABLED)
             .memoryCachePolicy(CachePolicy.ENABLED)
             .networkCachePolicy(CachePolicy.ENABLED)
