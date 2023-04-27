@@ -65,3 +65,10 @@ inline fun <reified V : View> ViewGroup.inflate(
     attachToRoot: Boolean = false
 ): V = LayoutInflater.from(context).inflate(layoutRes, this, attachToRoot) as V
 
+/**
+ * 获取 LayoutInflater
+ */
+fun ViewGroup.getLayoutInflater(): LayoutInflater {
+    return LayoutInflater.from(this.context)
+}
+

@@ -1,4 +1,4 @@
-package com.tongsr.core
+package com.tongsr.base
 
 import android.app.Application
 import okio.Okio
