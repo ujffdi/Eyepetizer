@@ -5,6 +5,7 @@ import android.webkit.ConsoleMessage
 import android.webkit.JsResult
 import android.webkit.WebChromeClient
 import android.webkit.WebView
+import com.tencent.bugly.crashreport.CrashReport
 import timber.log.Timber
 
 class BaseWebChromeClient : WebChromeClient() {
@@ -21,6 +22,12 @@ class BaseWebChromeClient : WebChromeClient() {
     override fun onConsoleMessage(consoleMessage: ConsoleMessage): Boolean {
         Timber.tag(TAG).d("onConsoleMessage() -> ${consoleMessage.message()}")
         return super.onConsoleMessage(consoleMessage)
+    }
+
+    override fun onProgressChanged(view: WebView?, newProgress: Int) {
+        // TODO 增加Javascript异常监控
+        CrashReport.setJavascriptMonitor(view, true)
+        super.onProgressChanged(view, newProgress)
     }
 
     /**

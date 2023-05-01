@@ -1,5 +1,7 @@
 package com.tongsr.core.util;
 
+import android.annotation.SuppressLint;
+
 import androidx.annotation.NonNull;
 
 import java.io.File;
@@ -93,22 +95,20 @@ public final class CrashUtils {
             getUncaughtExceptionHandler(dirPath, onCrashListener));
     }
 
+    @SuppressLint("SimpleDateFormat")
     private static UncaughtExceptionHandler getUncaughtExceptionHandler(final String dirPath,
                                                                         final OnCrashListener onCrashListener) {
-        return new UncaughtExceptionHandler() {
-            @Override
-            public void uncaughtException(@NonNull final Thread t, @NonNull final Throwable e) {
-                final String time = new SimpleDateFormat("yyyy_MM_dd-HH_mm_ss").format(new Date());
-                CrashInfo info = new CrashInfo(time, e);
-                final String crashFile = dirPath + time + ".txt";
-                UtilsBridge.writeFileFromString(crashFile, info.toString(), true);
+        return (t, e) -> {
+            final String time = new SimpleDateFormat("yyyy_MM_dd-HH_mm_ss").format(new Date());
+            CrashInfo info = new CrashInfo(time, e);
+            final String crashFile = dirPath + time + ".txt";
+            UtilsBridge.writeFileFromString(crashFile, info.toString(), true);
 
-                if (DEFAULT_UNCAUGHT_EXCEPTION_HANDLER != null) {
-                    DEFAULT_UNCAUGHT_EXCEPTION_HANDLER.uncaughtException(t, e);
-                }
-                if (onCrashListener != null) {
-                    onCrashListener.onCrash(info);
-                }
+            if (DEFAULT_UNCAUGHT_EXCEPTION_HANDLER != null) {
+                DEFAULT_UNCAUGHT_EXCEPTION_HANDLER.uncaughtException(t, e);
+            }
+            if (onCrashListener != null) {
+                onCrashListener.onCrash(info);
             }
         };
     }
@@ -122,8 +122,8 @@ public final class CrashUtils {
     }
 
     public static final class CrashInfo {
-        private UtilsBridge.FileHead mFileHeadProvider;
-        private Throwable mThrowable;
+        private final UtilsBridge.FileHead mFileHeadProvider;
+        private final Throwable mThrowable;
 
         private CrashInfo(String time, Throwable throwable) {
             mThrowable = throwable;
@@ -143,6 +143,7 @@ public final class CrashUtils {
             return mThrowable;
         }
 
+        @NonNull
         @Override
         public String toString() {
             return mFileHeadProvider.toString() + UtilsBridge.getFullStackTrace(mThrowable);

@@ -122,6 +122,8 @@ class Config {
             mavericks               : new LibConfig(path: "com.airbnb.android:mavericks:3.0.2"),
             // leakcanary;debugImplementation引用
             leakcanary              : new LibConfig(path: "com.squareup.leakcanary:leakcanary-android:2.10"),
+            // 异常上报
+            bugly                   : new LibConfig(path: "com.tencent.bugly:crashreport:latest.release"),
     ]
 
 }

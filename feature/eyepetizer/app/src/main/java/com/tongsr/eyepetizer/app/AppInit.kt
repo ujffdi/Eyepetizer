@@ -2,12 +2,15 @@ package com.tongsr.eyepetizer.app
 
 import android.app.Application
 import android.content.Context
+import com.tencent.bugly.crashreport.CrashReport
 import com.therouter.app.flowtask.lifecycle.FlowTask
 import com.therouter.flow.TheRouterFlowTask
 import com.tongsr.common.CoilUtils
 import com.tongsr.common.webview.TemplateWebViewPool
 import com.tongsr.common.webview.WebViewPool
 import com.tongsr.core.CrashReportingTree
+import com.tongsr.core.util.AppUtils
+import com.tongsr.core.util.CrashUtils
 import com.tongsr.core.util.LogUtils
 import com.tongsr.core.util.Utils
 import com.tongsr.data.local.datastore.LocalStorageManager
@@ -35,9 +38,31 @@ fun initMain(context: Context) {
 
     initLog(context)
 
+    initCoilUtils(context)
+
+    initCrashUtils()
+
     LocalStorageManager.init(context as Application)
 
+    initBugly(context)
+}
+
+private fun initBugly(context: Context) {
+    // https://bugly.qq.com/docs/user-guide/advance-features-android/?v=1.0.0
+    CrashReport.initCrashReport(context, "687c9274fe", false)
+    CrashReport.setIsDevelopmentDevice(context, BuildConfig.DEBUG)
+}
+
+private fun initCoilUtils(context: Context) {
     CoilUtils.init(context)
+}
+
+private fun initCrashUtils() {
+    CrashUtils.init {
+        //TODO 异常信息上报
+        CrashReport.postCatchedException(it.throwable)
+        AppUtils.relaunchApp(true)
+    }
 }
 
 private fun initUtils(context: Context) {
@@ -67,8 +92,7 @@ fun initWeb(context: Context) {
     WebViewPool.getInstance().init(context)
 
     // 加载本地模板用的 WebView 复用池
-    TemplateWebViewPool.getInstance()
-        .setMaxPoolSize(min(Runtime.getRuntime().availableProcessors(), 3))
+    TemplateWebViewPool.getInstance().setMaxPoolSize(min(Runtime.getRuntime().availableProcessors(), 3))
     TemplateWebViewPool.getInstance().init(context)
 }
 
