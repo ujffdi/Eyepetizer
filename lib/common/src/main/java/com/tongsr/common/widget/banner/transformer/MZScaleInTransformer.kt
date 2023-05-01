@@ -16,7 +16,7 @@ class MZScaleInTransformer @JvmOverloads constructor(private val minScale: Float
         val width = viewPager.measuredWidth.toFloat()
         val offsetPosition = paddingLeft / (width - paddingLeft - paddingRight)
         val currentPos = position - offsetPosition
-        var reduceX = 0f
+        val reduceX: Float
         val itemWidth = view.width.toFloat()
         //由于左右边的缩小而减小的x的大小的一半
         reduceX = (1.0f - minScale) * itemWidth / 2.0f

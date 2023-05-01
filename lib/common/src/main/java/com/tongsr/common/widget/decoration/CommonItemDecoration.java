@@ -1,4 +1,4 @@
-package com.tongsr.common.widget;
+package com.tongsr.common.widget.decoration;
 
 import android.graphics.Rect;
 import android.view.View;
