@@ -4,10 +4,15 @@ import android.app.Activity
 import android.content.Context
 import android.os.Bundle
 import android.view.*
+import android.widget.FrameLayout
+import androidx.coordinatorlayout.widget.CoordinatorLayout
+import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.tongsr.base.R
 import com.tongsr.core.util.AppUtils
 import timber.log.Timber
+
 
 /**
  * @author Tongsr
@@ -16,7 +21,7 @@ import timber.log.Timber
  * @email ujffdtfivkg@gmail.com
  * @description BaseBottomDialogFragment。使用 BaseDialogFragment 设置动画显示在底部几乎相等的功能
  */
-abstract class BaseBottomDialogFragment: BottomSheetDialogFragment(), IBaseView {
+abstract class BaseBottomDialogFragment : BottomSheetDialogFragment(), IBaseView {
 
     protected lateinit var parentActivity: Activity
     protected lateinit var appContext: Context
@@ -44,6 +49,21 @@ abstract class BaseBottomDialogFragment: BottomSheetDialogFragment(), IBaseView 
         savedInstanceState: Bundle?
     ): View? {
         log("onCreateView")
+
+        // 解决高度问题
+        dialog?.setOnShowListener { dialog ->
+            val d = dialog as BottomSheetDialog
+            val bottomSheet =
+                d.findViewById<FrameLayout>(com.google.android.material.R.id.design_bottom_sheet)
+            if (bottomSheet != null) {
+                val coordinatorLayout = bottomSheet.parent as CoordinatorLayout
+                val bottomSheetBehavior: BottomSheetBehavior<*> =
+                    BottomSheetBehavior.from(bottomSheet)
+                bottomSheetBehavior.peekHeight = bottomSheet.height
+                coordinatorLayout.parent.requestLayout()
+            }
+        }
+
         this.inflater = inflater
         setContentView()
         initView(savedInstanceState, contentView)
