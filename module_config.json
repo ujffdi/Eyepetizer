@@ -8,6 +8,8 @@
   "moduleConfig": [
     {"name": "feature_launcher_app", "isApply": true, "useLocal": true, "localPath": "./feature/launcher/app"},
     {"name": "feature_eyepetizer_app", "isApply": true, "useLocal": true, "localPath": "./feature/eyepetizer/app"},
+    {"name": "feature_main_pkg", "isApply": true, "useLocal": true, "localPath": "./feature/main/pkg"},
+    {"name": "feature_main_export", "isApply": true, "useLocal": true, "localPath": "./feature/main/export"},
     {"name": "feature_home_pkg", "isApply": true, "useLocal": true, "localPath": "./feature/home/pkg"},
     {"name": "feature_home_export", "isApply": true, "useLocal": true, "localPath": "./feature/home/export"},
     {"name": "feature_square_pkg", "isApply": true, "useLocal": true, "localPath": "./feature/square/pkg"},

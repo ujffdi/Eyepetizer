@@ -12,7 +12,7 @@ import androidx.lifecycle.LifecycleOwner
  * @email ujffdtfivkg@gmail.com
  * @description 将一个复杂的页面分成 n 个 Delegate。业务拆分
  */
-open class Delegate constructor(containerView: View) : DefaultLifecycleObserver {
+open class BusinessDelegate constructor(containerView: View) : DefaultLifecycleObserver {
 
     protected val appContext: Context = containerView.context
 

@@ -4,4 +4,14 @@ android {
 
 dependencies {
     api Config.modules.lib_base.dep
+
+    api Config.libs.paging3.path
+    api Config.libs.paging3ktx.path
+    api Config.libs.navigation.path
+    api Config.libs.navigationKtx.path
+    api Config.libs.recyclerview.path
+    api Config.libs.coil.path
+    api Config.libs.coilGif.path
+    api Config.libs.coilSvg.path
+    api Config.libs.coilVideo.path
 }
