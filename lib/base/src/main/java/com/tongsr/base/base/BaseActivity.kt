@@ -22,7 +22,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
 
     protected lateinit var parentActivity: Activity
     protected lateinit var appContext: Context
-    protected lateinit var mContentView: View
+    protected lateinit var parentContentView: View
 
     private var isDebug = true
 
@@ -33,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
         appContext = this
         initData(intent.extras)
         setContentView()
-        initView(savedInstanceState, mContentView)
+        initView(savedInstanceState, parentContentView)
         doBusiness()
     }
 
@@ -80,8 +80,8 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
         if (onBindLayout() <= 0) {
             return
         }
-        mContentView = LayoutInflater.from(this).inflate(onBindLayout(), null)
-        setContentView(mContentView)
+        parentContentView = LayoutInflater.from(this).inflate(onBindLayout(), null)
+        setContentView(parentContentView)
     }
 
     protected open fun log(msg: String) {

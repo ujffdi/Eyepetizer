@@ -90,10 +90,25 @@
         <item name="android:background">@color/transparent</item>
     </style>
 
-    <!-- 默认动画 -->
+    <!-- 默认Dialog动画 -->
     <style name="DialogDefaultAnimation" parent="@android:style/Animation">
         <item name="android:windowEnterAnimation">@anim/window_ios_in</item>
         <item name="android:windowExitAnimation">@anim/window_ios_out</item>
+    </style>
+
+    <!-- Splash启动页Style -->
+    <style name="Theme.SplashScreen.Demo" parent="Theme.SplashScreen">
+        <!--启动画面背景颜色-->
+        <item name="windowSplashScreenBackground">@color/splashscreen_bg</item>
+        <!-- 启动画面icon图标：这里可以是图片、帧动画等-->
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_anim_icon</item>
+        <item name="windowSplashScreenIconBackgroundColor">@color/splashscreen_icon_bg</item>
+        <!-- icon动画在关闭之前显示的时长：最长时间为1000毫秒-->
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <!-- 启动画面底部的 Brand 图片-->
+        <item name="android:windowSplashScreenBrandingImage">@drawable/brand_img</item>
+        <!-- Splash退出后的主题-->
+        <item name="postSplashScreenTheme">@style/Theme.Android12_Splash</item>
     </style>
 
 </resources>

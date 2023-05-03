@@ -1,4 +1,4 @@
-package com.tongsr.eyepetizer.app
+package com.eyepetizer.main.pkg
 
 import android.app.Application
 import android.content.Context
@@ -14,7 +14,6 @@ import com.tongsr.core.util.CrashUtils
 import com.tongsr.core.util.LogUtils
 import com.tongsr.core.util.Utils
 import com.tongsr.data.local.datastore.LocalStorageManager
-import com.tongsr.eyepetizer.BuildConfig
 import timber.log.Timber
 import java.lang.Integer.min
 

@@ -13,8 +13,21 @@
         android:icon="@mipmap/ic_eyepetizer_launcher"
         android:label="@string/app_name_real"
         android:supportsRtl="true"
-        tools:targetApi="31" >
+        android:name=".app.EyepetizerApplication"
+        android:theme="@style/AppTheme"
+        tools:targetApi="31">
 
+        <activity
+            android:name="com.eyepetizer.main.pkg.SplashActivity"
+            android:configChanges="keyboardHidden|orientation"
+            android:theme="@style/Theme.SplashScreen.Demo"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
 
 
     </application>

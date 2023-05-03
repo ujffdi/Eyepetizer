@@ -64,7 +64,7 @@ class Config {
             // material风格UI
             androidxMaterial        : new LibConfig(path: "com.google.android.material:material:1.8.0"),
             constraintLayout        : new LibConfig(path: "androidx.constraintlayout:constraintlayout:2.1.4"),
-            // 路由框架
+            // 路由框架 https://therouter.cn/
             routerApi               : new LibConfig(path: "cn.therouter:router:$routerVersion"),
             routerCompiler          : new LibConfig(path: "cn.therouter:apt:$routerVersion"),
             // 网络
@@ -120,6 +120,8 @@ class Config {
             // 依赖注入
             hilt                    : new LibConfig(path: "com.google.dagger:hilt-android:2.44"),
             hiltCompiler            : new LibConfig(path: "com.google.dagger:hilt-compiler:2.44"),
+            // Android 12 启动页面适配
+            splashscreen            : new LibConfig(path: "androidx.core:core-splashscreen:1.0.0"),
             // mvi 架构
             mavericks               : new LibConfig(path: "com.airbnb.android:mavericks:3.0.2"),
             // leakcanary;debugImplementation引用
