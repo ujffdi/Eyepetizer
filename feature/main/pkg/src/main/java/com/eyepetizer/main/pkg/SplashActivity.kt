@@ -1,9 +1,14 @@
 package com.eyepetizer.main.pkg
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
+import com.eyepetizer.main.export.PATH_MAIN
 import com.tongsr.base.base.BaseActivity
+import com.tongsr.core.util.BarUtils
+import com.tongsr.core.util.ThreadUtils
+import com.tongsr.router.routerNavigation
 
 /**
  * @author tongsr
@@ -12,26 +17,35 @@ import com.tongsr.base.base.BaseActivity
  * @email ujffdtfivkg@gmail.com
  * @description 启动页面
  */
+@SuppressLint("CustomSplashScreen")
 class SplashActivity: BaseActivity() {
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
-        super.onCreate(savedInstanceState)
-
-        splashScreen.setKeepOnScreenCondition { false }
-    }
     
     override fun initData(bundle: Bundle?) {
+
     }
 
     override fun onBindLayout(): Int = R.layout.activity_splash
 
     override fun initView(savedInstanceState: Bundle?, contentView: View) {
-
+        BarUtils.setNavBarColor(this, Color.WHITE)
+        BarUtils.setStatusBarColor(this, Color.WHITE)
     }
 
     override fun doBusiness() {
-        
+        ThreadUtils.runOnUiThreadDelayed(run, DELAY_MILLIS)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ThreadUtils.getMainHandler().removeCallbacks(run)
+    }
+
+    private val run = Runnable { routerNavigation(PATH_MAIN) }
+
+    companion object {
+
+        private const val DELAY_MILLIS = 2000L
+
     }
 
 }

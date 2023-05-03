@@ -53,6 +53,7 @@ class Config {
     ]
 
     static libs = [
+            // androidx
             androidxCore            : new LibConfig(path: "androidx.core:core-ktx:1.10.0"),
             activityKtx             : new LibConfig(path: "androidx.activity:activity-ktx:1.6.0"),
             fragmentKtx             : new LibConfig(path: "androidx.fragment:fragment-ktx:1.5.4"),
