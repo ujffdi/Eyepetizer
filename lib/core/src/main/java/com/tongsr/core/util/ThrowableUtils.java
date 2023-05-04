@@ -9,7 +9,7 @@ import java.util.StringTokenizer;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/02/12
  *     desc  : utils about exception
  * </pre>

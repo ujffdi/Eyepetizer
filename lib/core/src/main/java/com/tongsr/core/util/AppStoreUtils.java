@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/05/20
  *     desc  : utils about app store
  * </pre>

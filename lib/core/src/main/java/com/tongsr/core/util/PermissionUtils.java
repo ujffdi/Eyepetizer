@@ -32,7 +32,7 @@ import java.util.Set;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2017/12/29
  *     desc  : utils about permission
  * </pre>

@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/10/20
  *     desc  : utils about ui message can replace LocalBroadcastManager
  * </pre>

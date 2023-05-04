@@ -10,7 +10,7 @@ import androidx.annotation.RequiresPermission;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2016/09/29
  *     desc  : utils about vibrate
  * </pre>

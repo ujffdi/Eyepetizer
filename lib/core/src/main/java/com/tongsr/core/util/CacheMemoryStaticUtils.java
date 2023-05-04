@@ -5,7 +5,7 @@ import androidx.annotation.NonNull;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/01/04
  *     desc  : utils about memory cache
  * </pre>

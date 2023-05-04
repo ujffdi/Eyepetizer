@@ -26,7 +26,7 @@ import androidx.core.view.ViewCompat;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/09/13
  *     desc  : utils about shadow
  * </pre>

@@ -7,7 +7,7 @@ import androidx.core.content.FileProvider;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2020/03/19
  *     desc  :
  * </pre>

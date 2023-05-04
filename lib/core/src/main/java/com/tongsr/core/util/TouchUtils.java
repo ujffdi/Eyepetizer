@@ -13,7 +13,7 @@ import java.lang.annotation.RetentionPolicy;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/08/26
  *     desc  : utils about touch
  * </pre>

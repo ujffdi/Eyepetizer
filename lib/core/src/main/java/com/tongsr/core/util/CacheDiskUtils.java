@@ -27,7 +27,7 @@ import java.util.concurrent.atomic.AtomicLong;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2017/05/24
  *     desc  : utils about disk cache
  * </pre>

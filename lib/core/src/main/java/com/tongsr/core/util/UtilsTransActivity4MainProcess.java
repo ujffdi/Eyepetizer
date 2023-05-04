@@ -6,7 +6,7 @@ import android.content.Intent;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2020/03/19
  *     desc  :
  * </pre>

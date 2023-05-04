@@ -7,7 +7,7 @@ import android.os.Build;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2020/09/08
  *     desc  : utils about volume
  * </pre>

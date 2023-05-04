@@ -34,7 +34,7 @@ import java.util.UUID;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2016/8/1
  *     desc  : utils about device
  * </pre>

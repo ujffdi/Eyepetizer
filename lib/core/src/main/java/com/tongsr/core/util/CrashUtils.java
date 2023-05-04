@@ -13,7 +13,7 @@ import java.util.Map;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2016/09/27
  *     desc  : utils about crash
  * </pre>

@@ -31,7 +31,7 @@ import timber.log.Timber;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2016/09/23
  *     desc  : utils about activity
  * </pre>

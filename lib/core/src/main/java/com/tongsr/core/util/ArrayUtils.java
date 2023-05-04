@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/08/10
  *     desc  : utils about array
  * </pre>

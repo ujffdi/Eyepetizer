@@ -11,6 +11,7 @@ dependencies {
     api Config.libs.androidxAppcompat.path
     api Config.libs.androidxMaterial.path
     api Config.libs.constraintLayout.path
+    api Config.libs.viewBindingUtils.path
 
     api Config.libs.coreCoroutines.path
     api Config.libs.androidCoroutines.path

@@ -9,7 +9,7 @@ import java.io.File;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2018/04/15
  *     desc  : utils about path
  * </pre>

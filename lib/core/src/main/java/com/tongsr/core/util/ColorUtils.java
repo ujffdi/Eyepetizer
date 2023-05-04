@@ -12,7 +12,7 @@ import androidx.core.content.ContextCompat;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/01/15
  *     desc  : utils about color
  * </pre>

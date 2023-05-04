@@ -28,7 +28,7 @@ import java.util.List;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2017/06/22
  *     desc  : utils about file io
  * </pre>

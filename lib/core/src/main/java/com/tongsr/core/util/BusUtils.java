@@ -22,7 +22,7 @@ import java.util.concurrent.CopyOnWriteArraySet;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2018/10/02
  *     desc  : utils about bus
  * </pre>

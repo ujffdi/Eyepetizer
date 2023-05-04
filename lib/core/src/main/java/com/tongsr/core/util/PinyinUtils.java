@@ -5,7 +5,7 @@ import androidx.collection.SimpleArrayMap;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 16/11/16
  *     desc  : 拼音相关工具类
  * </pre>

@@ -19,7 +19,7 @@ import java.util.Set;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2020/03/31
  *     desc  :
  * </pre>

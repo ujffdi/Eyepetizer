@@ -13,7 +13,7 @@ import java.util.TreeMap;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/08/12
  *     desc  : utils about map
  * </pre>

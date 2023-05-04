@@ -3,7 +3,7 @@ package com.tongsr.core.constant;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2017/03/13
  *     desc  : constants of regex
  * </pre>

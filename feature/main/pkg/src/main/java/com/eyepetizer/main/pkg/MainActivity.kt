@@ -1,7 +1,5 @@
 package com.eyepetizer.main.pkg
 
-import android.animation.Animator
-import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
 import android.view.animation.Animation

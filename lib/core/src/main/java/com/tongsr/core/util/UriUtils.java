@@ -25,7 +25,7 @@ import java.lang.reflect.Method;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2018/04/20
  *     desc  : utils about uri
  * </pre>

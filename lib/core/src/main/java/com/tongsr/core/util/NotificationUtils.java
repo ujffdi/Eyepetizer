@@ -23,7 +23,7 @@ import java.lang.reflect.Method;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/10/20
  *     desc  : utils about notification
  * </pre>

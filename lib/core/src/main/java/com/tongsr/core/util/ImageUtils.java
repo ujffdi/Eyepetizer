@@ -59,7 +59,7 @@ import java.io.OutputStream;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2016/08/12
  *     desc  : utils about image
  * </pre>

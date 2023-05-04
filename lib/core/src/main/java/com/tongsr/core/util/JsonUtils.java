@@ -7,7 +7,7 @@ import org.json.JSONObject;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/01/07
  *     desc  : utils about json
  * </pre>

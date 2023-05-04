@@ -8,7 +8,7 @@ import java.text.NumberFormat;
 /**
  * <pre>
  *     author: blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2020/04/12
  *     desc  : utils about number
  * </pre>

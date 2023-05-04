@@ -18,7 +18,7 @@ import java.lang.reflect.Method;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2016/08/02
  *     desc  : utils about phone
  * </pre>

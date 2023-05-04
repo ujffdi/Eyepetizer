@@ -65,7 +65,7 @@ import java.lang.ref.WeakReference;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 16/12/13
  *     desc  : utils about span
  * </pre>

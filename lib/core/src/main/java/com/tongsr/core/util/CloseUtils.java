@@ -6,7 +6,7 @@ import java.io.IOException;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2016/10/09
  *     desc  : utils about close
  * </pre>

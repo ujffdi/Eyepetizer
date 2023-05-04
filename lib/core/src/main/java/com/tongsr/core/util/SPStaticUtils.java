@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * <pre>
  *     author: Blankj
- *     blog  : http://blankj.com
+ *     blog  : <a href="http://blankj.com">http://blankj.com</a>
  *     time  : 2019/01/04
  *     desc  : utils about shared preference
  * </pre>
