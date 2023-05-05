@@ -1,15 +1,17 @@
 package com.eyepetizer.main.pkg
 
+import android.animation.Animator
+import android.animation.ObjectAnimator
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
-import android.view.animation.AnimationUtils
 import androidx.core.view.isVisible
 import com.eyepetizer.main.export.PATH_MAIN
 import com.eyepetizer.main.pkg.databinding.ActivityMainBinding
 import com.therouter.router.Route
 import com.tongsr.base.base.BaseActivity
+import com.tongsr.core.extend.dpToPx
 import com.tongsr.core.util.BarUtils
+import com.tongsr.core.util.LogUtils
 
 
 /**
@@ -37,43 +39,104 @@ class MainActivity : BaseActivity() {
 
         binding.btn.setOnClickListener {
             if (show) {
-                val slideUpAnimation = AnimationUtils.loadAnimation(this, R.anim.bottom_in_down)
-                slideUpAnimation.setAnimationListener(object : Animation.AnimationListener {
-                    override fun onAnimationStart(animation: Animation?) {
-                        
-                    }
+                ObjectAnimator.ofFloat(binding.mineUnselect, "translationY", -50.dpToPx().toFloat(), 0F).apply {
+                    duration = 500
+                    addListener(object:Animator.AnimatorListener{
+                        override fun onAnimationRepeat(animation: Animator) {
+                            //动画重复
+                        }
 
-                    override fun onAnimationEnd(animation: Animation?) {
-                        binding.mineUnselect.isVisible = true
-                        binding.mineSelect.isVisible = false
-                    }
+                        override fun onAnimationEnd(animation: Animator) {
+                            //动画结束
+                        }
 
-                    override fun onAnimationRepeat(animation: Animation?) {
-                        
-                    }
+                        override fun onAnimationCancel(animation: Animator) {
+                            //动画取消
+                        }
 
-                })
-                binding.mineUnselect.startAnimation(slideUpAnimation)
+                        override fun onAnimationStart(animation: Animator) {
+                            //动画开始
+                            LogUtils.e("onAnimationStart mineUnselect")
+                            runOnUiThread {
+                                binding.mineUnselect.isVisible = true
+                            }
+                        }
+                    })
+                    start()
+                }
+
+                ObjectAnimator.ofFloat(binding.mineSelect, "translationY", 0F, 40.dpToPx().toFloat()).apply {
+                    duration = 500
+                    addListener(object:Animator.AnimatorListener{
+                        override fun onAnimationRepeat(animation: Animator) {
+                            //动画重复
+                        }
+
+                        override fun onAnimationEnd(animation: Animator) {
+                            //动画结束
+                            binding.mineSelect.isVisible = false
+                        }
+
+                        override fun onAnimationCancel(animation: Animator) {
+                            //动画取消
+                        }
+
+                        override fun onAnimationStart(animation: Animator) {
+                            //动画开始
+                        }
+                    })
+                    start()
+                }
 
             } else {
-                val slideUpAnimation = AnimationUtils.loadAnimation(this, R.anim.down_in_bottom)
-                slideUpAnimation.setAnimationListener(object : Animation.AnimationListener {
-                    override fun onAnimationStart(animation: Animation?) {
+                ObjectAnimator.ofFloat(binding.mineUnselect, "translationY", 0F, -50.dpToPx().toFloat()).apply {
+                    duration = 500
+                    addListener(object:Animator.AnimatorListener{
+                        override fun onAnimationRepeat(animation: Animator) {
+                            //动画重复
+                        }
 
-                    }
+                        override fun onAnimationEnd(animation: Animator) {
+                            //动画结束
+                            binding.mineUnselect.isVisible = false
+                        }
 
-                    override fun onAnimationEnd(animation: Animation?) {
-                        binding.mineUnselect.isVisible = false
-                        binding.mineSelect.isVisible = true
-                    }
+                        override fun onAnimationCancel(animation: Animator) {
+                            //动画取消
+                        }
 
-                    override fun onAnimationRepeat(animation: Animation?) {
+                        override fun onAnimationStart(animation: Animator) {
+                            //动画开始
+                        }
+                    })
+                    start()
+                }
 
-                    }
+                ObjectAnimator.ofFloat(binding.mineSelect, "translationY", 40.dpToPx().toFloat(), 0F).apply {
+                    duration = 500
+                    addListener(object:Animator.AnimatorListener{
+                        override fun onAnimationRepeat(animation: Animator) {
+                            //动画重复
+                        }
 
-                })
-                binding.mineUnselect.startAnimation(slideUpAnimation)
+                        override fun onAnimationEnd(animation: Animator) {
+                            //动画结束
+                        }
 
+                        override fun onAnimationCancel(animation: Animator) {
+                            //动画取消
+                        }
+
+                        override fun onAnimationStart(animation: Animator) {
+                            //动画开始
+                            LogUtils.e("onAnimationStart mineSelect")
+                            runOnUiThread {
+                                binding.mineSelect.isVisible = true
+                            }
+                        }
+                    })
+                    start()
+                }
             }
             show = show.not()
         }
