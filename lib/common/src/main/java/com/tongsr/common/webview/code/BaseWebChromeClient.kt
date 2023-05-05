@@ -5,7 +5,8 @@ import android.webkit.ConsoleMessage
 import android.webkit.JsResult
 import android.webkit.WebChromeClient
 import android.webkit.WebView
-import com.tencent.bugly.crashreport.CrashReport
+import com.tongsr.core.app.setJavascriptMonitor
+import com.tongsr.core.extend.ifNotNull
 import timber.log.Timber
 
 class BaseWebChromeClient : WebChromeClient() {
@@ -26,7 +27,9 @@ class BaseWebChromeClient : WebChromeClient() {
 
     override fun onProgressChanged(view: WebView?, newProgress: Int) {
         // TODO 增加Javascript异常监控
-        CrashReport.setJavascriptMonitor(view, true)
+        ifNotNull(view) {
+            setJavascriptMonitor(it)
+        }
         super.onProgressChanged(view, newProgress)
     }
 

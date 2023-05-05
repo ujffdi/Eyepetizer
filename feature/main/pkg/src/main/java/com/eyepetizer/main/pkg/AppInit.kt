@@ -8,7 +8,9 @@ import com.therouter.flow.TheRouterFlowTask
 import com.tongsr.common.CoilUtils
 import com.tongsr.common.webview.TemplateWebViewPool
 import com.tongsr.common.webview.WebViewPool
-import com.tongsr.core.CrashReportingTree
+import com.tongsr.core.app.CrashReportingTree
+import com.tongsr.core.app.initBugly
+import com.tongsr.core.app.postCatchedException
 import com.tongsr.core.util.AppUtils
 import com.tongsr.core.util.CrashUtils
 import com.tongsr.core.util.LogUtils
@@ -43,14 +45,9 @@ fun initMain(context: Context) {
 
     LocalStorageManager.init(context as Application)
 
-    initBugly(context)
+    initBugly(context, BuildConfig.DEBUG)
 }
 
-private fun initBugly(context: Context) {
-    // https://bugly.qq.com/docs/user-guide/advance-features-android/?v=1.0.0
-    CrashReport.initCrashReport(context, "687c9274fe", false)
-    CrashReport.setIsDevelopmentDevice(context, BuildConfig.DEBUG)
-}
 
 private fun initCoilUtils(context: Context) {
     CoilUtils.init(context)
@@ -59,7 +56,7 @@ private fun initCoilUtils(context: Context) {
 private fun initCrashUtils() {
     CrashUtils.init {
         //TODO 异常信息上报
-        CrashReport.postCatchedException(it.throwable)
+        postCatchedException(it.throwable)
         AppUtils.relaunchApp(true)
     }
 }

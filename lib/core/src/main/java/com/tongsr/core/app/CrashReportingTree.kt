@@ -1,4 +1,4 @@
-package com.tongsr.core
+package com.tongsr.core.app
 
 import timber.log.Timber
 
