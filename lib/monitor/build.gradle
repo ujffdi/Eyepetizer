@@ -1,0 +1,7 @@
+android {
+    namespace 'com.tongsr.monitor'
+}
+
+dependencies {
+    api Config.monitor.bugly.path
+}

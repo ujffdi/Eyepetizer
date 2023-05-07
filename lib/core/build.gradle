@@ -18,6 +18,5 @@ dependencies {
     api Config.libs.timber.path
     api Config.libs.gson.path
     api Config.libs.moshi.path
-    api Config.libs.bugly.path
 
 }

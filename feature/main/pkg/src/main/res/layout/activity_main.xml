@@ -4,34 +4,5 @@
     android:layout_height="match_parent">
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/dp_60">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/mine_select"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_height="@dimen/dp_50"
-            android:src="@drawable/ic_tab_mine_select"
-            android:visibility="gone" />
-
-        <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/mine_unselect"
-            android:layout_width="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_height="@dimen/dp_50"
-            android:src="@drawable/ic_tab_mine_unselect" />
-
-    </FrameLayout>
-
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/btn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="end"
-        android:layout_margin="@dimen/dp_100"
-        android:text="切换" />
-
 
 </FrameLayout>

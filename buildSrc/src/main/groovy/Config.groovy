@@ -18,8 +18,10 @@ class Config {
     static navVersion = "2.5.3"
     static roomVersion = "2.5.0"
     static mojitoVersion = "1.8.7"
+    static dslTabLayoutVersion = "3.5.3"
     static pictureSelectorVersion = "v3.10.9"
     static coilVersion = "2.3.0"
+    static hiltVersion = "2.44"
     static paging3version = "3.1.1"
 
     static modules = [
@@ -45,6 +47,7 @@ class Config {
             lib_common                 : new ModuleConfig(isApply: true , useLocal: true , localPath: "./lib/common"),
             lib_data                   : new ModuleConfig(isApply: true , useLocal: true , localPath: "./lib/data"),
             lib_router                 : new ModuleConfig(isApply: true , useLocal: true , localPath: "./lib/router"),
+            lib_monitor                : new ModuleConfig(isApply: true , useLocal: true , localPath: "./lib/monitor"),
             /*Don't delete this line*/
     ]
 
@@ -118,15 +121,21 @@ class Config {
             mojito                  : new LibConfig(path: "com.github.mikaelzero.mojito:mojito:$mojitoVersion"),
             // support long image and gif with Sketch
             sketchImageViewLoader   : new LibConfig(path: "com.github.mikaelzero.mojito:SketchImageViewLoader:$mojitoVersion"),
+            dslTabLayout            : new LibConfig(path: "com.github.angcyo.DslTablayout:TabLayout:$dslTabLayoutVersion"),
+            dslTabLayoutVp1Delegate : new LibConfig(path: "com.github.angcyo.DslTablayout:ViewPager1Delegate:$dslTabLayoutVersion"),
+            dslTabLayoutVp2Delegate : new LibConfig(path: "com.github.angcyo.DslTablayout:ViewPager2Delegate:$dslTabLayoutVersion"),
             // 依赖注入
-            hilt                    : new LibConfig(path: "com.google.dagger:hilt-android:2.44"),
-            hiltCompiler            : new LibConfig(path: "com.google.dagger:hilt-compiler:2.44"),
+            hilt                    : new LibConfig(path: "com.google.dagger:hilt-android:$hiltVersion"),
+            hiltCompiler            : new LibConfig(path: "com.google.dagger:hilt-compiler:$hiltVersion"),
             // Android 12 启动页面适配
             splashscreen            : new LibConfig(path: "androidx.core:core-splashscreen:1.0.0"),
             // mvi 架构
             mavericks               : new LibConfig(path: "com.airbnb.android:mavericks:3.0.2"),
             // leakcanary;debugImplementation引用
             leakcanary              : new LibConfig(path: "com.squareup.leakcanary:leakcanary-android:2.10"),
+    ]
+
+    static monitor = [
             // 异常上报
             bugly                   : new LibConfig(path: "com.tencent.bugly:crashreport:latest.release"),
     ]

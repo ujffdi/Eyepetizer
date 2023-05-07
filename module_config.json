@@ -25,6 +25,7 @@
     {"name": "lib_base", "isApply": true, "useLocal": true, "localPath": "./lib/base"},
     {"name": "lib_common", "isApply": true, "useLocal": true, "localPath": "./lib/common"},
     {"name": "lib_data", "isApply": true, "useLocal": true, "localPath": "./lib/data"},
-    {"name": "lib_router", "isApply": true, "useLocal": true, "localPath": "./lib/router"}
+    {"name": "lib_router", "isApply": true, "useLocal": true, "localPath": "./lib/router"},
+    {"name": "lib_monitor", "isApply": true, "useLocal": true, "localPath": "./lib/monitor"}
   ]
 }
