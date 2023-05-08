@@ -2,20 +2,18 @@ package com.eyepetizer.main.pkg
 
 import android.app.Application
 import android.content.Context
-import com.tencent.bugly.crashreport.CrashReport
 import com.therouter.app.flowtask.lifecycle.FlowTask
 import com.therouter.flow.TheRouterFlowTask
 import com.tongsr.common.CoilUtils
 import com.tongsr.common.webview.TemplateWebViewPool
 import com.tongsr.common.webview.WebViewPool
 import com.tongsr.core.app.CrashReportingTree
-import com.tongsr.core.app.initBugly
-import com.tongsr.core.app.postCatchedException
 import com.tongsr.core.util.AppUtils
 import com.tongsr.core.util.CrashUtils
 import com.tongsr.core.util.LogUtils
 import com.tongsr.core.util.Utils
 import com.tongsr.data.local.datastore.LocalStorageManager
+import com.tongsr.monitor.CrashReportHelper
 import timber.log.Timber
 import java.lang.Integer.min
 
@@ -45,7 +43,7 @@ fun initMain(context: Context) {
 
     LocalStorageManager.init(context as Application)
 
-    initBugly(context, BuildConfig.DEBUG)
+    CrashReportHelper.initCrashReport(context, BuildConfig.DEBUG)
 }
 
 
@@ -56,7 +54,7 @@ private fun initCoilUtils(context: Context) {
 private fun initCrashUtils() {
     CrashUtils.init {
         //TODO 异常信息上报
-        postCatchedException(it.throwable)
+        CrashReportHelper.postCatchedException(it.throwable)
         AppUtils.relaunchApp(true)
     }
 }
