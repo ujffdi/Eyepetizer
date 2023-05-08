@@ -121,6 +121,7 @@ class Config {
             mojito                  : new LibConfig(path: "com.github.mikaelzero.mojito:mojito:$mojitoVersion"),
             // support long image and gif with Sketch
             sketchImageViewLoader   : new LibConfig(path: "com.github.mikaelzero.mojito:SketchImageViewLoader:$mojitoVersion"),
+            // tab layout
             dslTabLayout            : new LibConfig(path: "com.github.angcyo.DslTablayout:TabLayout:$dslTabLayoutVersion"),
             dslTabLayoutVp1Delegate : new LibConfig(path: "com.github.angcyo.DslTablayout:ViewPager1Delegate:$dslTabLayoutVersion"),
             dslTabLayoutVp2Delegate : new LibConfig(path: "com.github.angcyo.DslTablayout:ViewPager2Delegate:$dslTabLayoutVersion"),
@@ -131,13 +132,13 @@ class Config {
             splashscreen            : new LibConfig(path: "androidx.core:core-splashscreen:1.0.0"),
             // mvi 架构
             mavericks               : new LibConfig(path: "com.airbnb.android:mavericks:3.0.2"),
-            // leakcanary;debugImplementation引用
-            leakcanary              : new LibConfig(path: "com.squareup.leakcanary:leakcanary-android:2.10"),
     ]
 
     static monitor = [
             // 异常上报
             bugly                   : new LibConfig(path: "com.tencent.bugly:crashreport:latest.release"),
+            // leakcanary;debugImplementation引用,检测内存
+            leakcanary              : new LibConfig(path: "com.squareup.leakcanary:leakcanary-android:2.10"),
     ]
 
 }
