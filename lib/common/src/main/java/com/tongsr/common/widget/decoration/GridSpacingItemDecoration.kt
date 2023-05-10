@@ -6,13 +6,6 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ItemDecoration
 
 /**
- * <pre>
- * author : Tongsr
- * time   : 2018/3/30
- * desc   :
- *
- */
-/**
  * @author Tongsr
  * @version 1.0
  * @date 2020/6/8
