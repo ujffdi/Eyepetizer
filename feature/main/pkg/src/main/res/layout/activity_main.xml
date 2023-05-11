@@ -17,50 +17,24 @@
         android:layout_gravity="bottom"
         android:background="@color/white"
         app:tab_badge_min_width="WRAP_HEIGHT"
-        app:tab_draw_badge="false"
         app:tab_default_index="0"
+        app:tab_draw_badge="false"
         app:tab_draw_indicator="false"
         app:tab_item_is_equ_width="true">
 
-        <FrameLayout
+        <com.eyepetizer.main.pkg.weiget.TabView
+            android:id="@+id/tab_home"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:selected_drawable="@drawable/ic_tab_home_select"
+            app:unselected_drawable="@drawable/ic_tab_home_unselect" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tab_home_select" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_unselect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tab_home_unselect" />
-
-        </FrameLayout>
-
-        <FrameLayout
+        <com.eyepetizer.main.pkg.weiget.TabView
+            android:id="@+id/tab_social"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tab_social_select" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_unselect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tab_social_unselect" />
-
-        </FrameLayout>
+            android:layout_height="wrap_content"
+            app:selected_drawable="@drawable/ic_tab_social_select"
+            app:unselected_drawable="@drawable/ic_tab_social_unselect" />
 
         <FrameLayout
             android:layout_width="wrap_content"
@@ -75,45 +49,19 @@
 
         </FrameLayout>
 
-        <FrameLayout
+        <com.eyepetizer.main.pkg.weiget.TabView
+            android:id="@+id/tab_discover"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            app:selected_drawable="@drawable/ic_tab_discover_select"
+            app:unselected_drawable="@drawable/ic_tab_discover_unselect" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tab_discover_select" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_unselect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tab_discover_unselect" />
-
-        </FrameLayout>
-
-        <FrameLayout
+        <com.eyepetizer.main.pkg.weiget.TabView
+            android:id="@+id/tab_mine"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_select"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tab_mine_select" />
-
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_unselect"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_tab_mine_unselect" />
-
-        </FrameLayout>
+            android:layout_height="wrap_content"
+            app:selected_drawable="@drawable/ic_tab_mine_select"
+            app:unselected_drawable="@drawable/ic_tab_mine_unselect" />
 
     </com.angcyo.tablayout.DslTabLayout>
 

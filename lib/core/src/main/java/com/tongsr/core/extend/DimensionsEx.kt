@@ -2,7 +2,7 @@ package com.tongsr.core.extend
 
 import android.content.res.Resources
 import android.util.TypedValue
-import androidx.annotation.DimenRes
+import com.tongsr.core.util.Utils
 
 /**
  * @author Tongsr
@@ -67,8 +67,11 @@ fun Float.dpToPx(): Int =
 
 /**
  * smallestWidth 适配方案，从 dimen 文件里获取 px 值
+ * 如果从 getDimension() 拿到值后转成 Dp 可调用 SizeUtils.pxToDp() 或者本类的 pxToDp()
  */
-fun appDpToPx(@DimenRes resId: Int): Int = Resources.getSystem().getDimensionPixelSize(resId)
+inline val Int.pixel: Float get() = Utils.getApp().resources.getDimension(this)
 
-inline val Int.pixel: Int get() = Resources.getSystem().getDimensionPixelSize(this)
+
+
+
 
