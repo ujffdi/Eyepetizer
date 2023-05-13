@@ -11,7 +11,7 @@ class Config {
     static versionName = '1.0.0.0'
 
     // libs 的版本号
-    static routerVersion = "1.1.2"
+    static routerVersion = "1.1.3"
     static retrofitVersion = "2.9.0"
     static coroutinesVersion = "1.6.4"
     static androidxVersion = "2.6.1"

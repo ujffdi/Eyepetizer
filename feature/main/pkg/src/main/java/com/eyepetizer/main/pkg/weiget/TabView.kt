@@ -26,10 +26,14 @@ class TabView @JvmOverloads constructor(
     private val selectedView = AppCompatImageView(context)
     private val unselectedView = AppCompatImageView(context)
 
+    private val selectedAnimatorSet = AnimatorSet()
+    private val unselectedAnimatorSet = AnimatorSet()
+
     init {
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.TabView)
         val unselected = typedArray.getDrawable(R.styleable.TabView_unselected_drawable)
         val selected = typedArray.getDrawable(R.styleable.TabView_selected_drawable)
+        typedArray.recycle()
 
         selectedView.layoutParams =
             LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
@@ -43,48 +47,56 @@ class TabView @JvmOverloads constructor(
             }
         unselectedView.setImageDrawable(unselected)
 
-        addView(unselectedView)
         addView(selectedView)
-        typedArray.recycle()
+        addView(unselectedView)
+
     }
 
     fun selected() {
-        val goneAnima = ObjectAnimator.ofFloat(unselectedView, PROPERTY_NAME, 0F, -30F)
-            .apply {
-                duration = 400
-                addListener(object : TabAnimatorListener() {
-                    override fun onAnimationEnd(animation: Animator) {
-                        unselectedView.isVisible = false
-                    }
-                })
-            }
-
-        val visibleAnima = ObjectAnimator.ofFloat(selectedView, PROPERTY_NAME, selectedView.height.toFloat(), 0F)
-            .apply {
-                duration = 400
-                addListener(object : TabAnimatorListener() {
-                    override fun onAnimationStart(animation: Animator) {
-                        selectedView.isVisible = true
-                    }
-                })
-            }
-        val animatorSet = AnimatorSet()
-        animatorSet.play(visibleAnima).with(goneAnima)
-        animatorSet.start()
-    }
-
-    fun unselected() {
-        val visibleAnima = ObjectAnimator.ofFloat(unselectedView, PROPERTY_NAME, -unselectedView.height.toFloat(), 0F).apply {
+        if (unselectedAnimatorSet.isRunning) {
+            unselectedAnimatorSet.cancel()
+        }
+        // 显示的层级
+        if (selectedView.z == 0F) {
+            selectedView.z = 1F
+        }
+        if (unselectedView.z == 1F) {
+            unselectedView.z = 0F
+        }
+        val goneAnima = ObjectAnimator.ofFloat(
+            unselectedView, PROPERTY_NAME, 0F, -40F
+        ).apply {
             duration = 400
             addListener(object : TabAnimatorListener() {
-                override fun onAnimationStart(animation: Animator) {
-                    unselectedView.isVisible = true
+                override fun onAnimationEnd(animation: Animator) {
+                    unselectedView.isVisible = false
                 }
             })
         }
 
-        val goneAnima = ObjectAnimator.ofFloat(selectedView, PROPERTY_NAME, 0F, 30F).apply {
-            duration = 400
+        val visibleAnima = ObjectAnimator.ofFloat(
+            selectedView, PROPERTY_NAME, selectedView.height.toFloat(), 0F
+        ).apply {
+            duration = 300
+            addListener(object : TabAnimatorListener() {
+                override fun onAnimationStart(animation: Animator) {
+                    selectedView.isVisible = true
+                }
+            })
+        }
+        selectedAnimatorSet.play(visibleAnima).with(goneAnima)
+
+        selectedAnimatorSet.start()
+    }
+
+    fun unselected() {
+        if (selectedAnimatorSet.isRunning) {
+            selectedAnimatorSet.cancel()
+        }
+        val goneAnima = ObjectAnimator.ofFloat(
+            selectedView, PROPERTY_NAME, 0F, selectedView.height.toFloat()
+        ).apply {
+            duration = 300
             addListener(object : TabAnimatorListener() {
                 override fun onAnimationEnd(animation: Animator) {
                     selectedView.isVisible = false
@@ -92,14 +104,24 @@ class TabView @JvmOverloads constructor(
             })
         }
 
-        val animatorSet = AnimatorSet()
-        animatorSet.play(visibleAnima).with(goneAnima)
-        animatorSet.start()
+        val visibleAnima = ObjectAnimator.ofFloat(
+            unselectedView, PROPERTY_NAME, -unselectedView.height.toFloat(), 0F
+        ).apply {
+            duration = 400
+            addListener(object : TabAnimatorListener() {
+                override fun onAnimationStart(animation: Animator) {
+                    unselectedView.isVisible = true
+                }
+            })
+        }
+        unselectedAnimatorSet.play(goneAnima).with(visibleAnima)
+
+        unselectedAnimatorSet.start()
     }
-    
-    open class TabAnimatorListener: Animator.AnimatorListener {
+
+    open class TabAnimatorListener : Animator.AnimatorListener {
         override fun onAnimationStart(animation: Animator) {
-            
+
         }
 
         override fun onAnimationEnd(animation: Animator) {
@@ -107,11 +129,11 @@ class TabView @JvmOverloads constructor(
         }
 
         override fun onAnimationCancel(animation: Animator) {
-            
+
         }
 
         override fun onAnimationRepeat(animation: Animator) {
-            
+
         }
 
     }
