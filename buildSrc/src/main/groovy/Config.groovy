@@ -14,7 +14,8 @@ class Config {
     static routerVersion = "1.1.3"
     static retrofitVersion = "2.9.0"
     static coroutinesVersion = "1.6.4"
-    static androidxVersion = "2.6.1"
+    // 设置最新的2.6.1会和mavericks有冲突
+    static androidxVersion = "2.5.1"
     static navVersion = "2.5.3"
     static roomVersion = "2.5.0"
     static mojitoVersion = "1.8.7"
@@ -23,6 +24,7 @@ class Config {
     static coilVersion = "2.3.0"
     static hiltVersion = "2.44"
     static paging3version = "3.1.1"
+    static mavericksVersion = "3.0.2"
 
     static modules = [
             /*Don't delete this line*/
@@ -131,14 +133,15 @@ class Config {
             // Android 12 启动页面适配
             splashscreen            : new LibConfig(path: "androidx.core:core-splashscreen:1.0.0"),
             // mvi 架构
-            mavericks               : new LibConfig(path: "com.airbnb.android:mavericks:3.0.2"),
+            mavericks               : new LibConfig(path: "com.airbnb.android:mavericks:$mavericksVersion"),
+            mavericksNavigation     : new LibConfig(path: "com.airbnb.android:mavericks-navigation:$mavericksVersion"),
     ]
 
     static monitor = [
             // 异常上报
-            bugly                   : new LibConfig(path: "com.tencent.bugly:crashreport:latest.release"),
+            bugly     : new LibConfig(path: "com.tencent.bugly:crashreport:latest.release"),
             // leakcanary;debugImplementation引用,检测内存
-            leakcanary              : new LibConfig(path: "com.squareup.leakcanary:leakcanary-android:2.10"),
+            leakcanary: new LibConfig(path: "com.squareup.leakcanary:leakcanary-android:2.10"),
     ]
 
 }

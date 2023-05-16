@@ -10,4 +10,5 @@ dependencies {
 
     // MVI 架构
     api Config.libs.mavericks.path
+    api Config.libs.mavericksNavigation.path
 }

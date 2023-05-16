@@ -2,6 +2,9 @@ package com.eyepetizer.main.pkg
 
 import android.os.Bundle
 import android.view.View
+import androidx.annotation.IdRes
+import androidx.navigation.NavController
+import androidx.navigation.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.eyepetizer.main.export.PATH_MAIN
 import com.eyepetizer.main.pkg.databinding.ActivityMainBinding
@@ -31,14 +34,21 @@ class MainActivity : BaseActivity() {
     override fun onBindLayout(): Int = R.layout.activity_main
 
     override fun initView(savedInstanceState: Bundle?, contentView: View) {
-        initDslTabLayout()
+        BarUtils.setStatusBarLightMode(this, true)
+
     }
 
     override fun doBusiness() {
 
     }
 
+    override fun onStart() {
+        super.onStart()
+        initDslTabLayout()
+    }
+
     private fun initDslTabLayout() {
+        val navController = findNavController(R.id.nav_host_fragment)
         binding.tabLayout.configTabLayoutConfig {
 
             onSelectItemView = { _, index, _, _ ->
@@ -59,10 +69,26 @@ class MainActivity : BaseActivity() {
                         }
                         val selectedView = selectViewList.first()
                         if (selectedView is TabView) {
+                            switchFragment(navController, selectedView.id)
                             selectedView.selected()
                         }
                     }
                 }
+        }
+    }
+
+    /**
+     * 切换 Fragment
+     *
+     * @param navController navController
+     * @param id view id
+     */
+    private fun switchFragment(navController: NavController, @IdRes id: Int) {
+        when(id) {
+            R.id.tab_home -> navController.navigate(R.id.nav_page_home)
+            R.id.tab_social -> navController.navigate(R.id.nav_square)
+            R.id.tab_discover -> navController.navigate(R.id.nav_found)
+            R.id.tab_mine -> navController.navigate(R.id.nav_mine)
         }
     }
 

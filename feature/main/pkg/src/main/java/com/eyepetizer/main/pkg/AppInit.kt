@@ -2,6 +2,8 @@ package com.eyepetizer.main.pkg
 
 import android.app.Application
 import android.content.Context
+import com.airbnb.mvrx.Mavericks
+import com.airbnb.mvrx.navigation.DefaultNavigationViewModelDelegateFactory
 import com.therouter.app.flowtask.lifecycle.FlowTask
 import com.therouter.flow.TheRouterFlowTask
 import com.tongsr.common.CoilUtils
@@ -23,7 +25,7 @@ import java.lang.Integer.min
  * @version 1.0
  * @date 2023/2/3
  * @email ujffdtfivkg@gmail.com
- * @description web init
+ * @description app init
  */
 
 // TODO 初始化任务类
@@ -44,6 +46,8 @@ fun initMain(context: Context) {
     LocalStorageManager.init(context as Application)
 
     CrashReportHelper.initCrashReport(context, BuildConfig.DEBUG)
+
+    Mavericks.initialize(context, viewModelDelegateFactory = DefaultNavigationViewModelDelegateFactory())
 }
 
 

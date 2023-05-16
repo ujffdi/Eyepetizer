@@ -9,6 +9,7 @@ dependencies {
     api Config.libs.retrofitGsonConverter.path
     api Config.libs.retrofitMoshiConverter.path
     api Config.libs.okhttp.path
+    api Config.libs.moshi.path
     // 本地数据
     api Config.libs.datastore.path
     // 数据库

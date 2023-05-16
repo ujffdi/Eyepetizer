@@ -1,6 +1,6 @@
 package com.tongsr.data.remote.entity
 
-import com.google.gson.annotations.SerializedName
+import com.squareup.moshi.Json
 
 /**
  * @author Tongsr
@@ -12,6 +12,6 @@ import com.google.gson.annotations.SerializedName
 
 data class ApiResult<T>(
     val data: T,
-    @field: SerializedName("errorCode") val code: Int,
-    @field: SerializedName("errorMsg") val message: String
+    @field: Json(name = "errorCode") val code: Int,
+    @field: Json(name = "errorMsg") val message: String
 )
