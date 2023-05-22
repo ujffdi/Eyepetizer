@@ -25,6 +25,7 @@ class Config {
     static hiltVersion = "2.44"
     static paging3version = "3.1.1"
     static mavericksVersion = "3.0.2"
+    static epoxyVersion = "5.1.3"
 
     static modules = [
             /*Don't delete this line*/
@@ -67,13 +68,15 @@ class Config {
             lifecycleLivedataKtx    : new LibConfig(path: "androidx.lifecycle:lifecycle-livedata-ktx:$androidxVersion"),
             lifecycleLivedataCodeKtx: new LibConfig(path: "androidx.lifecycle:lifecycle-livedata-core-ktx:$androidxVersion"),
             androidxAppcompat       : new LibConfig(path: "androidx.appcompat:appcompat:1.6.1"),
-            // material风格UI
+            // material 风格UI
             androidxMaterial        : new LibConfig(path: "com.google.android.material:material:1.8.0"),
             constraintLayout        : new LibConfig(path: "androidx.constraintlayout:constraintlayout:2.1.4"),
             // 路由框架 https://therouter.cn/
             routerApi               : new LibConfig(path: "cn.therouter:router:$routerVersion"),
             routerCompiler          : new LibConfig(path: "cn.therouter:apt:$routerVersion"),
             // 网络
+            // 对于长连接，微信 Mars（https://github.com/Tencent/mars）
+            // Mars 也可以是个网络请求框架
             retrofit                : new LibConfig(path: "com.squareup.retrofit2:retrofit:$retrofitVersion"),
             okhttp                  : new LibConfig(path: "com.squareup.okhttp3:okhttp:4.10.0"),
             retrofitGsonConverter   : new LibConfig(path: "com.squareup.retrofit2:converter-gson:$retrofitVersion"),
@@ -88,8 +91,6 @@ class Config {
             // 导航栏
             navigation              : new LibConfig(path: "androidx.navigation:navigation-fragment-ktx:$navVersion"),
             navigationKtx           : new LibConfig(path: "androidx.navigation:navigation-ui-ktx:$navVersion"),
-            // 有ConcatAdapter
-            recyclerview            : new LibConfig(path: "androidx.recyclerview:recyclerview:1.3.0"),
             // 图片加载
             coil                    : new LibConfig(path: "io.coil-kt:coil:$coilVersion"),
             coilGif                 : new LibConfig(path: "io.coil-kt:coil-gif:$coilVersion"),
@@ -135,6 +136,11 @@ class Config {
             // mvi 架构
             mavericks               : new LibConfig(path: "com.airbnb.android:mavericks:$mavericksVersion"),
             mavericksNavigation     : new LibConfig(path: "com.airbnb.android:mavericks-navigation:$mavericksVersion"),
+            // 使用 RecyclerView
+            epoxy                   : new LibConfig(path: "com.airbnb.android:epoxy:$epoxyVersion"),
+            epoxyProcessor          : new LibConfig(path: "com.airbnb.android:epoxy-processor:$epoxyVersion"),
+            // 有ConcatAdapter
+            recyclerview            : new LibConfig(path: "androidx.recyclerview:recyclerview:1.3.0"),
     ]
 
     static monitor = [
@@ -142,6 +148,12 @@ class Config {
             bugly     : new LibConfig(path: "com.tencent.bugly:crashreport:latest.release"),
             // leakcanary;debugImplementation引用,检测内存
             leakcanary: new LibConfig(path: "com.squareup.leakcanary:leakcanary-android:2.10"),
+            // 计划引进
+            // booster（https://github.com/didi/booster）用于监控项目各方面和修复
+            // matrix（https://github.com/Tencent/matrix） 用于监控项目各方面
+            // 详情点击链接访问即可
+            // 两者之间的简易说明：
+            // 如：booster 让 APK 瘦身，matrix针 对 APK 安装包的分析检测工具
     ]
 
 }

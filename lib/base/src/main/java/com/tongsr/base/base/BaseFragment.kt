@@ -48,7 +48,6 @@ abstract class BaseFragment : Fragment(), IBaseView {
         log("onCreateView")
         this.inflater = inflater
         setContentView()
-        initView(savedInstanceState, contentView)
         return contentView
     }
 
@@ -76,6 +75,7 @@ abstract class BaseFragment : Fragment(), IBaseView {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         log("onViewCreated")
         super.onViewCreated(view, savedInstanceState)
+        initView(savedInstanceState, contentView)
         doBusiness()
     }
 

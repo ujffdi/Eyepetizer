@@ -36,6 +36,10 @@ android {
 
 }
 
+kapt {
+    correctErrorTypes = true
+}
+
 dependencies {
     if (project.name.endsWith("_pkg") || project.name.endsWith("_mock")) {
         // if module's name equals 'pkg', api all of export
@@ -47,6 +51,7 @@ dependencies {
     }
 
     kapt Config.libs.routerCompiler.path
+    kapt Config.libs.epoxyProcessor.path
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
