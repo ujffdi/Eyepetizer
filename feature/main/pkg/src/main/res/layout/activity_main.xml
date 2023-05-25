@@ -14,12 +14,11 @@
         app:navGraph="@navigation/nav_graph" />
 
     <com.angcyo.tablayout.DslTabLayout
-        android:id="@+id/tab_layout"
+        android:id="@+id/dsl_tab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/dp_60"
         android:layout_gravity="bottom"
         android:background="@color/white"
-        app:tab_badge_min_width="WRAP_HEIGHT"
         app:tab_default_index="0"
         app:tab_draw_badge="false"
         app:tab_draw_indicator="false"

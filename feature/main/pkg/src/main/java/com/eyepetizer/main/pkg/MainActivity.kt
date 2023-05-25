@@ -49,7 +49,7 @@ class MainActivity : BaseActivity() {
 
     private fun initDslTabLayout() {
         val navController = findNavController(R.id.nav_host_fragment)
-        binding.tabLayout.configTabLayoutConfig {
+        binding.dslTab.configTabLayoutConfig {
 
             onSelectItemView = { _, index, _, _ ->
                 if (index == 2) {

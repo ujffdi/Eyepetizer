@@ -86,12 +86,12 @@ private fun initLog(context: Context) {
 )
 fun initWeb(context: Context) {
     // 根据手机 CPU 核心数（或者手机内存等条件）设置缓存池容量
-    WebViewPool.getInstance().setMaxPoolSize(min(Runtime.getRuntime().availableProcessors(), 3))
-    WebViewPool.getInstance().init(context)
+//    WebViewPool.getInstance().setMaxPoolSize(min(Runtime.getRuntime().availableProcessors(), 3))
+//    WebViewPool.getInstance().init(context)
 
     // 加载本地模板用的 WebView 复用池
-    TemplateWebViewPool.getInstance().setMaxPoolSize(min(Runtime.getRuntime().availableProcessors(), 3))
-    TemplateWebViewPool.getInstance().init(context)
+//    TemplateWebViewPool.getInstance().setMaxPoolSize(min(Runtime.getRuntime().availableProcessors(), 3))
+//    TemplateWebViewPool.getInstance().init(context)
 }
 
 

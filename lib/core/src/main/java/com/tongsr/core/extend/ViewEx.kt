@@ -30,7 +30,8 @@ fun TextView.clearDrawable() {
  */
 fun TextView.setDrawableLeft(@DrawableRes resId: Int) {
     val drawable = ContextCompat.getDrawable(this.context, resId)
-    setCompoundDrawablesRelativeWithIntrinsicBounds(drawable, null, null, null)
+    drawable?.setBounds(0, 0, drawable.intrinsicWidth, drawable.intrinsicHeight)
+    setCompoundDrawables(drawable, null, null, null)
 }
 
 /**

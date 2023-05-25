@@ -53,7 +53,6 @@ class UserFragment : BaseFragment(), MavericksView {
     private val viewModel: UserViewModel by fragmentViewModel()
 
     override fun initData(bundle: Bundle?) {
-
     }
 
     override fun onBindLayout(): Int = R.layout.fragment_user
