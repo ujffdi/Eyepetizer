@@ -9,22 +9,15 @@ package com.eyepetizer.user.export
  */
 object FakeDataManager {
 
-    fun getTestTextData(): List<TextBtnData> {
-        val items = mutableListOf<TextBtnData>()
-        for (i in 0 until 10) {
-            items.add(TextBtnData("text = $i"))
-        }
-        return items
-    }
-
-    fun getTestBtnData(): List<TextBtnData> {
-        val items = mutableListOf<TextBtnData>()
-        for (i in 0 until 10) {
-            items.add(TextBtnData("btn = $i"))
+    fun getTextData(page: Int, pageSize: Int): List<TextModel> {
+        val items = mutableListOf<TextModel>()
+        for (i in 0 until pageSize) {
+            items.add(TextModel("text = $i"))
         }
         return items
     }
 
 }
 
-data class TextBtnData(val text: String)
+
+data class TextModel(val text: String)

@@ -138,6 +138,7 @@ class Config {
             mavericksNavigation     : new LibConfig(path: "com.airbnb.android:mavericks-navigation:$mavericksVersion"),
             // 使用 RecyclerView
             epoxy                   : new LibConfig(path: "com.airbnb.android:epoxy:$epoxyVersion"),
+            epoxyPaging             : new LibConfig(path: "com.airbnb.android:epoxy-paging3:$epoxyVersion"),
             epoxyProcessor          : new LibConfig(path: "com.airbnb.android:epoxy-processor:$epoxyVersion"),
             // 有ConcatAdapter
             recyclerview            : new LibConfig(path: "androidx.recyclerview:recyclerview:1.3.0"),

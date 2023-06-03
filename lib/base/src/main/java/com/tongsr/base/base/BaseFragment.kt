@@ -24,7 +24,7 @@ abstract class BaseFragment : Fragment(), IBaseView {
     protected lateinit var appContext: Context
     protected lateinit var inflater: LayoutInflater
     protected lateinit var contentView: View
-    private var isLoaded = false
+    protected var isLoaded = false
     private var isDebug = true
 
     override fun onAttach(context: Context) {

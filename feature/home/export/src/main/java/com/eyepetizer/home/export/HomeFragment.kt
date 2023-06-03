@@ -2,12 +2,8 @@ package com.eyepetizer.home.export
 
 import android.os.Bundle
 import android.view.View
+import android.widget.FrameLayout
 import android.widget.TextView
-import androidx.annotation.LayoutRes
-import androidx.appcompat.widget.AppCompatTextView
-import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.navigation.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.mvrx.MavericksView
 import com.airbnb.mvrx.fragmentViewModel
@@ -20,8 +16,6 @@ import com.tongsr.base.base.BaseFragment
 import com.tongsr.common.adapter.GenericViewPager2Adapter
 import com.tongsr.core.extend.clearDrawable
 import com.tongsr.core.extend.setDrawableLeft
-import com.tongsr.core.util.LogUtils
-import com.tongsr.core.util.ToastUtils
 
 /**
  * @author tongsr
@@ -59,20 +53,18 @@ class HomeFragment : BaseFragment(), MavericksView {
 
             onSelectViewChange =
                 { fromView: View?, selectViewList: List<View>, reselect: Boolean, _: Boolean ->
-                    LogUtils.e("selected")
                     if (reselect.not()) {
-                        if (fromView is TextView) {
-                            fromView.clearDrawable()
+                        if (fromView is FrameLayout && fromView.getChildAt(0) is TextView) {
+                            val textView = fromView.getChildAt(0)
+                            (textView as TextView).clearDrawable()
                         }
                         val selectedView = selectViewList.first()
-                        LogUtils.e("click", fromView is TextView, selectedView is TextView)
-                        if (selectedView is TextView) {
-                            selectedView.setDrawableLeft(R.drawable.ic_nav_indicator)
+                        if (selectedView is FrameLayout && selectedView.getChildAt(0) is TextView) {
+                            val textView = selectedView.getChildAt(0)
+                            (textView as TextView).setDrawableLeft(R.drawable.ic_nav_indicator)
                         }
                     }
                 }
-
-
         }
     }
 

@@ -18,4 +18,5 @@ dependencies {
     api Config.libs.dslTabLayout.path
     api Config.libs.dslTabLayoutVp2Delegate.path
     api Config.libs.epoxy.path
+    api Config.libs.epoxyPaging.path
 }

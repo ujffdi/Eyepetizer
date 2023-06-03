@@ -1,0 +1,35 @@
+package com.eyepetizer.user.export
+
+import androidx.paging.PagingSource
+import androidx.paging.PagingState
+
+/**
+ * @author tongsr
+ * @version 1.0
+ * @date 2023/6/3
+ * @email ujffdtfivkg@gmail.com
+ * @description UserPagingSource
+ */
+class UserPagingSource : PagingSource<Int, TextModel>() {
+
+    override fun getRefreshKey(state: PagingState<Int, TextModel>): Int? {
+        return state.anchorPosition?.let { anchorPosition ->
+            val anchorPage = state.closestPageToPosition(anchorPosition)
+            anchorPage?.prevKey?.plus(1) ?: anchorPage?.nextKey?.minus(1)
+        }
+    }
+
+    override suspend fun load(params: LoadParams<Int>): LoadResult<Int, TextModel> {
+        return try {
+            val page = params.key ?: 1
+            val pageSize = params.loadSize
+            val data = FakeDataManager.getTextData(page, pageSize)
+            val prevKey = if (page > 1) page - 1 else null
+            val nextKey = if (data.isNotEmpty()) page + 1 else null
+            LoadResult.Page(data = data, prevKey = prevKey, nextKey = nextKey)
+        } catch (e: Exception) {
+            LoadResult.Error(e)
+        }
+    }
+
+}

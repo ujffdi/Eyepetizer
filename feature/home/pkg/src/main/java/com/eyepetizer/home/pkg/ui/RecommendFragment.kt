@@ -31,10 +31,9 @@ class RecommendFragment : BaseFragment() {
 
         @JvmStatic
         fun newInstance(): RecommendFragment {
-            val args = Bundle()
-            val fragment = RecommendFragment()
-            fragment.arguments = args
-            return fragment
+            return RecommendFragment()
         }
+
     }
+
 }

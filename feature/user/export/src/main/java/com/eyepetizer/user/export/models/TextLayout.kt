@@ -1,4 +1,4 @@
-package com.eyepetizer.user.export
+package com.eyepetizer.user.export.models
 
 import android.content.Context
 import android.util.AttributeSet
@@ -7,7 +7,8 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.AfterPropsSet
 import com.airbnb.epoxy.ModelView
 import com.airbnb.epoxy.TextProp
-import com.eyepetizer.user.export.databinding.ItemEpoxyButtonBinding
+import com.eyepetizer.user.export.R
+import com.eyepetizer.user.export.databinding.ItemEpoxyTextBinding
 
 /**
  * @author tongsr
@@ -16,25 +17,25 @@ import com.eyepetizer.user.export.databinding.ItemEpoxyButtonBinding
  * @email ujffdtfivkg@gmail.com
  * @description
  */
-@ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
-class ButtonLayout @JvmOverloads constructor(
+@ModelView(autoLayout = ModelView.Size.WRAP_WIDTH_WRAP_HEIGHT)
+class TextLayout @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr)  {
+) : FrameLayout(context, attrs, defStyleAttr) {
 
     init {
-        inflate(context, R.layout.item_epoxy_button, this)
+        inflate(context, R.layout.item_epoxy_text, this)
     }
 
-    private val binding by viewBinding(ItemEpoxyButtonBinding::bind)
+    private val binding by viewBinding(ItemEpoxyTextBinding::bind)
 
     @TextProp
     lateinit var text: CharSequence
 
     @AfterPropsSet
     fun useProps() {
-        binding.btn.text = text
+        binding.title.text = text
     }
 
 }
