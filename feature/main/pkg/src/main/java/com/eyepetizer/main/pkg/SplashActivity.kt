@@ -40,7 +40,10 @@ class SplashActivity: BaseActivity() {
         ThreadUtils.getMainHandler().removeCallbacks(run)
     }
 
-    private val run = Runnable { routerNavigation(PATH_MAIN) }
+    private val run = Runnable {
+        routerNavigation(PATH_MAIN)
+        finish()
+    }
 
     companion object {
 

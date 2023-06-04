@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_test_graph"
+    app:startDestination="@id/testFirstFragment">
+
+    <fragment
+        android:id="@+id/testFirstFragment"
+        android:name="com.tongsr.test.pkg.TestFirstFragment"
+        android:label="TestFirstFragment" >
+        <action
+            android:id="@+id/action_testFirstFragment_to_testSecondFragment"
+            app:destination="@id/testSecondFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/testSecondFragment"
+        android:name="com.tongsr.test.pkg.TestSecondFragment"
+        android:label="TestSecondFragment" />
+</navigation>

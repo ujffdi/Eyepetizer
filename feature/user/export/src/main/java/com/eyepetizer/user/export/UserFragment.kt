@@ -9,15 +9,15 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.EpoxyAsyncUtil
 import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.paging3.PagingDataEpoxyController
-import com.airbnb.mvrx.Async
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksViewModel
-import com.airbnb.mvrx.Uninitialized
-import com.airbnb.mvrx.fragmentViewModel
+import com.airbnb.mvrx.navigation.navGraphViewModel
 import com.eyepetizer.user.export.databinding.FragmentUserBinding
 import com.eyepetizer.user.export.models.ItemViewBindingEpoxyHolder_
+import com.eyepetizer.user.export.service.ITestPathService
+import com.therouter.TheRouter
 import com.tongsr.base.mavericks.MavericksFragment
-import com.tongsr.core.util.ToastUtils
+import com.tongsr.router.routerNavigation
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
@@ -31,7 +31,7 @@ import kotlinx.coroutines.launch
  */
 
 data class UserState(
-    val textData: Async<List<TextModel>> = Uninitialized
+    val position: Int = 0
 ) : MavericksState
 
 class UserViewModel(initialState: UserState) : MavericksViewModel<UserState>(initialState) {
@@ -42,6 +42,8 @@ class UserViewModel(initialState: UserState) : MavericksViewModel<UserState>(ini
         return userRepository.getTextPagingData().cachedIn(viewModelScope)
     }
 
+    fun savePosition(position: Int) = setState { copy(position = position) }
+
 }
 
 
@@ -51,8 +53,9 @@ class UserController :
     override fun buildItemModel(currentPosition: Int, item: TextModel?): EpoxyModel<*> {
         return item?.let {
             ItemViewBindingEpoxyHolder_().id(item.text).title(item.text).listener {
-                    ToastUtils.showShort(item.text)
-                }
+                val testMainPath = TheRouter.get(ITestPathService::class.java)?.getTestMainPath() ?: ""
+                routerNavigation(testMainPath)
+            }
         } ?: ItemViewBindingEpoxyHolder_().id(-currentPosition)
     }
 
@@ -61,7 +64,7 @@ class UserController :
 class UserFragment : MavericksFragment() {
 
     private val binding by viewBinding(FragmentUserBinding::bind)
-    private val userViewModel by fragmentViewModel(UserViewModel::class)
+    private val userViewModel by navGraphViewModel(R.id.nav_user_graph, UserViewModel::class)
     private val userController = UserController()
 
     override fun initData(bundle: Bundle?) {
@@ -71,7 +74,15 @@ class UserFragment : MavericksFragment() {
     override fun onBindLayout(): Int = R.layout.fragment_user
 
     override fun initView(savedInstanceState: Bundle?, contentView: View) {
+        userController.onRestoreInstanceState(savedInstanceState)
         binding.epoxyRecyclerView.setController(userController)
+
+//        binding.epoxyRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+//                super.onScrolled(recyclerView, dx, dy)
+//                userViewModel.savePosition((recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition())
+//            }
+//        })
     }
 
     override fun doBusiness() {
@@ -80,10 +91,16 @@ class UserFragment : MavericksFragment() {
                 userController.submitData(it)
             }
         }
+
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        super.onSaveInstanceState(outState)
+        userController.onSaveInstanceState(outState)
     }
 
     override fun invalidate() {
-//        userController.requestModelBuild()
+
     }
 
 }

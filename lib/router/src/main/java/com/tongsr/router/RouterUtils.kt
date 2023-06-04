@@ -31,7 +31,7 @@ fun routerNavigation(path: String, params: Map<String, Any>? = null) {
  */
 private fun buildParams(navigator: Navigator, params: Map<String, Any>?): Navigator {
     return navigator.apply {
-        if (params != null && params.isNotEmpty())
+        if (!params.isNullOrEmpty())
             for ((k, v) in params)
                 when (v) {
                     is String -> withString(k, v)
