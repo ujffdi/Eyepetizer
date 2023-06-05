@@ -1,7 +1,7 @@
 apply {
     plugin "com.android.application"
     plugin "org.jetbrains.kotlin.android"
-    plugin "kotlin-kapt"
+    plugin "com.google.devtools.ksp"
     plugin "therouter"
 }
 
@@ -60,7 +60,7 @@ dependencies {
         api entrySet.value.dep
     }
 
-    kapt Config.libs.routerCompiler.path
+    ksp Config.libs.routerCompiler.path
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'

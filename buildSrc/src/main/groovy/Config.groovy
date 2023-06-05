@@ -11,7 +11,7 @@ class Config {
     static versionName = '1.0.0.0'
 
     // libs 的版本号
-    static routerVersion = "1.1.3"
+    static routerVersion = "1.1.4-rc2"
     static retrofitVersion = "2.9.0"
     static coroutinesVersion = "1.6.4"
     // 设置最新的2.6.1会和mavericks有冲突
@@ -105,7 +105,7 @@ class Config {
             // 工具集，已用源码的形式引入
             utils                   : new LibConfig(path: "com.blankj:utilcodex:1.31.1"),
             // 委托方式实现 ViewBinding
-            viewBindingUtils        : new LibConfig(path: "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.6"),
+            viewBindingUtils        : new LibConfig(path: "com.github.kirich1409:viewbindingpropertydelegate-noreflection:1.5.9"),
             // 用于线上的日志
             timber                  : new LibConfig(path: "com.jakewharton.timber:timber:5.0.1"),
             // RecyclerView
