@@ -9,25 +9,27 @@
         android:id="@+id/nav_page_home"
         android:name="com.eyepetizer.home.export.HomeFragment"
         android:label="@string/page_home"
-        tools:layout="@layout/fragment_home"/>
+        tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_square"
         android:name="com.eyepetizer.square.export.SquareFragment"
-        android:label="@string/square" />
+        android:label="@string/square"
+        tools:layout="@layout/fragment_square" />
 
     <fragment
         android:id="@+id/nav_found"
         android:name="com.eyepetizer.found.export.FoundFragment"
-        android:label="@string/found" />
+        android:label="@string/found"
+        tools:layout="@layout/fragment_found" />
 
     <!-- 演示深度链接，对应的资源文件放在各自模块 -->
-    <include app:graph="@navigation/nav_user_graph" />
+    <!--    <include app:graph="@navigation/nav_user_graph" />-->
 
-<!--    <fragment-->
-<!--        android:id="@+id/nav_user"-->
-<!--        android:name="com.eyepetizer.user.export.UserFragment"-->
-<!--        android:label="@string/user_title"/>-->
-
+    <fragment
+        android:id="@+id/nav_user"
+        android:name="com.eyepetizer.user.export.UserFragment"
+        android:label="@string/user_title"
+        tools:layout="@layout/fragment_user" />
 
 </navigation>

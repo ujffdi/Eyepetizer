@@ -2,13 +2,11 @@ package com.tongsr.test.pkg
 
 import android.os.Bundle
 import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.NavHostFragment.Companion.findNavController
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.eyepetizer.user.export.FakeDataManager
 import com.eyepetizer.user.export.models.itemViewBindingEpoxyHolder
 import com.tongsr.base.base.BaseFragment
-import com.tongsr.core.util.LogUtils
 import com.tongsr.test.pkg.databinding.FragmentTestFirstBinding
 
 /**
@@ -38,11 +36,6 @@ class TestFirstFragment : BaseFragment() {
                 }
             }
         }
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        LogUtils.e("onSaveInstanceState")
     }
 
     override fun initData(bundle: Bundle?) {

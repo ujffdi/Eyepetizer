@@ -88,7 +88,7 @@ class Config {
             // 分页
             paging3                 : new LibConfig(path: "androidx.paging:paging-runtime:$paging3version"),
             paging3ktx              : new LibConfig(path: "androidx.paging:paging-runtime-ktx:$paging3version"),
-            // 导航栏
+            // 导航
             navigation              : new LibConfig(path: "androidx.navigation:navigation-fragment-ktx:$navVersion"),
             navigationKtx           : new LibConfig(path: "androidx.navigation:navigation-ui-ktx:$navVersion"),
             // 图片加载
