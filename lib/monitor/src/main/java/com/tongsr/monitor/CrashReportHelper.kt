@@ -2,7 +2,6 @@ package com.tongsr.monitor
 
 import android.content.Context
 import android.webkit.WebView
-import com.tencent.bugly.crashreport.CrashReport
 
 /**
  * @author Tongsr
@@ -12,21 +11,23 @@ import com.tencent.bugly.crashreport.CrashReport
 
 object CrashReportHelper {
 
+    var crashReport: ICrashReportListener? = null
+
     fun initCrashReport(context: Context, isDebug: Boolean) {
-        // https://bugly.qq.com/docs/user-guide/advance-features-android/?v=1.0.0
-        CrashReport.initCrashReport(context, "687c9274fe", false)
-        CrashReport.setIsDevelopmentDevice(context, isDebug)
+        crashReport?.initCrashReport(context, isDebug)
     }
 
-    fun setJavascriptMonitor(view: WebView) {
-        CrashReport.setJavascriptMonitor(view, true)
+    fun setJavascriptMonitor(view: WebView, autoInject: Boolean) {
+        crashReport?.setJavascriptMonitor(view, autoInject = true)
     }
 
     fun postCatchedException(t: Throwable) {
-        CrashReport.postCatchedException(t)
+        crashReport?.postCatchedException(t)
     }
 
-// ....
+    fun setDeviceId(context: Context, deviceId: String) {
+        crashReport?.setDeviceId(context, deviceId)
+    }
 
 }
 

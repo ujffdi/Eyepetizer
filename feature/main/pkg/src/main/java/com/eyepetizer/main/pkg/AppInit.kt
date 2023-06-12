@@ -14,6 +14,7 @@ import com.tongsr.core.util.CrashUtils
 import com.tongsr.core.util.LogUtils
 import com.tongsr.core.util.Utils
 import com.tongsr.data.local.datastore.LocalStorageManager
+import com.tongsr.monitor.BuglyHelper
 import com.tongsr.monitor.CrashReportHelper
 import timber.log.Timber
 import java.lang.Integer.min
@@ -44,9 +45,15 @@ fun initMain(context: Context) {
 
     LocalStorageManager.init(context as Application)
 
-    CrashReportHelper.initCrashReport(context, BuildConfig.DEBUG)
+    initCrashReport(context)
 
     Mavericks.initialize(context, viewModelDelegateFactory = DefaultNavigationViewModelDelegateFactory())
+}
+
+private fun initCrashReport(context: Context) {
+    CrashReportHelper.crashReport = BuglyHelper().apply {
+        initCrashReport(context, BuildConfig.DEBUG)
+    }
 }
 
 

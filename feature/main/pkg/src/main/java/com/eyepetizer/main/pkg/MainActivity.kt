@@ -32,6 +32,9 @@ class MainActivity : BaseActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::bind)
 
+    private val navOptionsBuilder =
+        NavOptions.Builder().setLaunchSingleTop(true).setRestoreState(true)
+
     override fun initData(bundle: Bundle?) {
         BarUtils.setStatusBarLightMode(parentActivity, false)
     }
@@ -91,23 +94,19 @@ class MainActivity : BaseActivity() {
     private fun switchFragment(navController: NavController, @IdRes id: Int) {
         // 使用深度链接，不会保存view的状态。类似于RecyclerView的滚动状态，是不会保存。
         // 和常规的从A到B Fragment，不太相同。这是底部导航栏->平级的Fragment
-        val builder = NavOptions.Builder().setLaunchSingleTop(true).setRestoreState(true)
-        builder.setPopUpTo(
+        val navIdRes = when (id) {
+            R.id.tab_home -> R.id.nav_page_home
+            R.id.tab_social -> R.id.nav_square
+            R.id.tab_discover -> R.id.nav_found
+            R.id.tab_mine -> R.id.nav_user
+            else -> R.id.nav_page_home
+        }
+        navOptionsBuilder.setPopUpTo(
             navController.graph.findStartDestination().id,
             inclusive = false,
             saveState = true
         )
-        when(id) {
-            R.id.tab_home -> navController.navigate(R.id.nav_page_home, null, builder.build())
-            R.id.tab_social -> navController.navigate(R.id.nav_square, null, builder.build())
-            R.id.tab_discover -> navController.navigate(R.id.nav_found, null, builder.build())
-            R.id.tab_mine -> {
-                val request = NavDeepLinkRequest.Builder
-                    .fromUri(NAV_USER.toUri())
-                    .build()
-                navController.navigate(request, builder.build())
-            }
-        }
+        navController.navigate(navIdRes, null, navOptionsBuilder.build())
     }
 
 }
