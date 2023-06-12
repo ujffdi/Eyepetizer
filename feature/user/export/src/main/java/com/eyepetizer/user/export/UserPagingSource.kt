@@ -2,6 +2,8 @@ package com.eyepetizer.user.export
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import okio.IOException
+import retrofit2.HttpException
 
 /**
  * @author tongsr
@@ -27,8 +29,10 @@ class UserPagingSource : PagingSource<Int, TextModel>() {
             val prevKey = if (page > 1) page - 1 else null
             val nextKey = if (data.isNotEmpty()) page + 1 else null
             LoadResult.Page(data = data, prevKey = prevKey, nextKey = nextKey)
-        } catch (e: Exception) {
-            LoadResult.Error(e)
+        } catch (exception: IOException) {
+            LoadResult.Error(exception)
+        } catch (exception: HttpException) {
+            LoadResult.Error(exception)
         }
     }
 
