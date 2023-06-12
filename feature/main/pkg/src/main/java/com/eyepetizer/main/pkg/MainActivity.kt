@@ -3,9 +3,7 @@ package com.eyepetizer.main.pkg
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.IdRes
-import androidx.core.net.toUri
 import androidx.navigation.NavController
-import androidx.navigation.NavDeepLinkRequest
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
@@ -13,7 +11,6 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.eyepetizer.main.export.PATH_MAIN
 import com.eyepetizer.main.pkg.databinding.ActivityMainBinding
 import com.eyepetizer.main.pkg.weiget.TabView
-import com.eyepetizer.user.export.NAV_USER
 import com.therouter.router.Route
 import com.tongsr.base.base.BaseActivity
 import com.tongsr.core.util.BarUtils
@@ -31,9 +28,6 @@ import com.tongsr.core.util.ToastUtils
 class MainActivity : BaseActivity() {
 
     private val binding by viewBinding(ActivityMainBinding::bind)
-
-    private val navOptionsBuilder =
-        NavOptions.Builder().setLaunchSingleTop(true).setRestoreState(true)
 
     override fun initData(bundle: Bundle?) {
         BarUtils.setStatusBarLightMode(parentActivity, false)
@@ -57,6 +51,12 @@ class MainActivity : BaseActivity() {
 
     private fun initDslTabLayout() {
         val navController = findNavController(R.id.nav_host_fragment)
+        val navBuilder =
+            NavOptions.Builder().setLaunchSingleTop(true).setRestoreState(true).setPopUpTo(
+                navController.graph.findStartDestination().id,
+                inclusive = false,
+                saveState = true
+            )
         binding.dslTab.configTabLayoutConfig {
 
             onSelectItemView = { _, index, _, _ ->
@@ -77,7 +77,7 @@ class MainActivity : BaseActivity() {
                         }
                         val selectedView = selectViewList.first()
                         if (selectedView is TabView) {
-                            switchFragment(navController, selectedView.id)
+                            switchFragment(navController, selectedView.id, navBuilder.build())
                             selectedView.selected()
                         }
                     }
@@ -90,10 +90,14 @@ class MainActivity : BaseActivity() {
      *
      * @param navController navController
      * @param id view id
+     * @param navOptions NavOptions
      */
-    private fun switchFragment(navController: NavController, @IdRes id: Int) {
+    private fun switchFragment(
+        navController: NavController, @IdRes id: Int, navOptions: NavOptions
+    ) {
         // 使用深度链接，不会保存view的状态。类似于RecyclerView的滚动状态，是不会保存。
         // 和常规的从A到B Fragment，不太相同。这是底部导航栏->平级的Fragment
+        //val request = NavDeepLinkRequest.Builder.fromUri(NAV_USER.toUri()).build()
         val navIdRes = when (id) {
             R.id.tab_home -> R.id.nav_page_home
             R.id.tab_social -> R.id.nav_square
@@ -101,12 +105,7 @@ class MainActivity : BaseActivity() {
             R.id.tab_mine -> R.id.nav_user
             else -> R.id.nav_page_home
         }
-        navOptionsBuilder.setPopUpTo(
-            navController.graph.findStartDestination().id,
-            inclusive = false,
-            saveState = true
-        )
-        navController.navigate(navIdRes, null, navOptionsBuilder.build())
+        navController.navigate(navIdRes, null, navOptions)
     }
 
 }

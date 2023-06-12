@@ -1,7 +1,7 @@
 apply {
     plugin "com.android.library"
     plugin "org.jetbrains.kotlin.android"
-    plugin "kotlin-kapt"
+    plugin "com.google.devtools.ksp"
 }
 
 android {
@@ -36,9 +36,6 @@ android {
 
 }
 
-kapt {
-    correctErrorTypes = true
-}
 
 dependencies {
     if (project.name.endsWith("_pkg") || project.name.endsWith("_mock")) {
@@ -50,8 +47,8 @@ dependencies {
         api Config.modules.lib_common.dep
     }
 
-    kapt Config.libs.routerCompiler.path
-    kapt Config.libs.epoxyProcessor.path
+    ksp Config.libs.routerCompiler.path
+    ksp Config.libs.epoxyProcessor.path
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
