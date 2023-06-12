@@ -18,7 +18,7 @@ object CrashReportHelper {
     }
 
     fun setJavascriptMonitor(view: WebView, autoInject: Boolean) {
-        crashReport?.setJavascriptMonitor(view, autoInject = true)
+        crashReport?.setJavascriptMonitor(view, autoInject = autoInject)
     }
 
     fun postCatchedException(t: Throwable) {

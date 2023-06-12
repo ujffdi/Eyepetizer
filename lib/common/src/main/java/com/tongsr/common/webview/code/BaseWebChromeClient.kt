@@ -28,7 +28,7 @@ class BaseWebChromeClient : WebChromeClient() {
     override fun onProgressChanged(view: WebView?, newProgress: Int) {
         // TODO 增加Javascript异常监控
         ifNotNull(view) {
-            CrashReportHelper.setJavascriptMonitor(it)
+            CrashReportHelper.setJavascriptMonitor(it, true)
         }
         super.onProgressChanged(view, newProgress)
     }

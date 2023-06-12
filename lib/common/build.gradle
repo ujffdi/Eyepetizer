@@ -19,4 +19,6 @@ dependencies {
     api Config.libs.dslTabLayoutVp2Delegate.path
     api Config.libs.epoxy.path
     api Config.libs.epoxyPaging.path
+    api Config.libs.immersionbar.path
+    api Config.libs.immersionbarKtx.path
 }

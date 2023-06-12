@@ -24,10 +24,9 @@ import com.tongsr.core.extend.setDrawableLeft
  * @email ujffdtfivkg@gmail.com
  * @description 首页
  */
-class HomeFragment : BaseFragment(), MavericksView {
+class HomeFragment : BaseFragment() {
 
     private val binding by viewBinding(FragmentHomeBinding::bind)
-    private val viewModel: HomeViewModel by fragmentViewModel()
 
     override fun initData(bundle: Bundle?) {
 
@@ -41,10 +40,6 @@ class HomeFragment : BaseFragment(), MavericksView {
     }
 
     override fun doBusiness() {
-
-    }
-
-    override fun invalidate() = withState(viewModel) { state ->
 
     }
 

@@ -3,7 +3,7 @@ package com.eyepetizer.home.pkg.serviceprovider
 import androidx.fragment.app.Fragment
 import com.eyepetizer.home.export.service.IFragmentService
 import com.eyepetizer.home.pkg.ui.AttentionFragment
-import com.eyepetizer.home.pkg.ui.DailyPaperFragment
+import com.eyepetizer.home.pkg.ui.dailypager.DailyPaperFragment
 import com.eyepetizer.home.pkg.ui.RecommendFragment
 import com.therouter.inject.ServiceProvider
 
