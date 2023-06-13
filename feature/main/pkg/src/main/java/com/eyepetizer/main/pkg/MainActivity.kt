@@ -98,6 +98,12 @@ class MainActivity : BaseActivity() {
         // 使用深度链接，不会保存view的状态。类似于RecyclerView的滚动状态，是不会保存。
         // 和常规的从A到B Fragment，不太相同。这是底部导航栏->平级的Fragment
         //val request = NavDeepLinkRequest.Builder.fromUri(NAV_USER.toUri()).build()
+        val navBuilder =
+            NavOptions.Builder().setLaunchSingleTop(true).setRestoreState(true).setPopUpTo(
+                navController.graph.findStartDestination().id,
+                inclusive = false,
+                saveState = true
+            )
         val navIdRes = when (id) {
             R.id.tab_home -> R.id.nav_page_home
             R.id.tab_social -> R.id.nav_square
@@ -105,7 +111,7 @@ class MainActivity : BaseActivity() {
             R.id.tab_mine -> R.id.nav_user
             else -> R.id.nav_page_home
         }
-        navController.navigate(navIdRes, null, navOptions)
+        navController.navigate(navIdRes, null, navBuilder.build())
     }
 
 }

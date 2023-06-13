@@ -3,6 +3,7 @@ package com.eyepetizer.home.pkg.ui.dailypager
 import android.os.Bundle
 import android.view.View
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.eyepetizer.home.export.models.itemVideoBindingEpoxyHolder
 import com.eyepetizer.home.pkg.R
 import com.eyepetizer.home.pkg.databinding.FragmentDailyPaperBinding
 import com.tongsr.base.mavericks.MavericksFragment
@@ -31,14 +32,14 @@ class DailyPaperFragment : MavericksFragment() {
     override fun doBusiness() {
         binding.epoxyRecyclerView.withModels {
             for (i in 0 until 50) {
-//                itemVideoBindingEpoxyHolder {
-//                    id(i)
-//                    videoCoverUrl("https://img.eyepetizer.net/community/ugc-img/cover/1632406857021.jpeg?x-oss-process=image/resize,w_720")
-//                    videoTitle("这是标题")
-//                    videoDescription("这是描述")
-//                    authorAvatarUrl("https://img.eyepetizer.net/community/avatar/1632406857021.jpeg?x-oss-process=image/resize,w_72")
-//                    videoDuration("00:10")
-//                }
+                itemVideoBindingEpoxyHolder {
+                    id(i)
+                    videoCoverUrl("https://img.eyepetizer.net/community/ugc-img/cover/1632406857021.jpeg?x-oss-process=image/resize,w_720")
+                    videoTitle("这是标题")
+                    videoDescription("这是描述")
+                    authorAvatarUrl("https://img.eyepetizer.net/community/avatar/1632406857021.jpeg?x-oss-process=image/resize,w_72")
+                    videoDuration("00:10")
+                }
             }
         }
     }

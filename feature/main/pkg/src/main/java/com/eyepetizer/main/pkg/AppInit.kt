@@ -76,10 +76,11 @@ private fun initUtils(context: Context) {
 private fun initLog(context: Context) {
     // 线上环境不开启 log。开发时使用
     val config = LogUtils.getConfig()
-    config.isLogSwitch = BuildConfig.DEBUG
+    val debug = BuildConfig.DEBUG
+    config.isLogSwitch = debug
 
     // Timber 用于 log 埋点
-    if (BuildConfig.DEBUG) {
+    if (debug) {
         Timber.plant(Timber.DebugTree())
     } else {
         Timber.plant(CrashReportingTree())

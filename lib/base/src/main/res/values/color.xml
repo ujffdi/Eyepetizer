@@ -84,5 +84,7 @@
     <color name="pink">#FFFFC0CB</color>
     <!-- 橙色 -->
     <color name="orange">#FFFFA500</color>
+    <!-- 咖啡色 -->
+    <color name="brown">#FF4D3900</color>
 
 </resources>

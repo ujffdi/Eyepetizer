@@ -11,6 +11,7 @@ import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.paging3.PagingDataEpoxyController
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksViewModel
+import com.airbnb.mvrx.fragmentViewModel
 import com.airbnb.mvrx.navigation.navGraphViewModel
 import com.eyepetizer.user.export.databinding.FragmentUserBinding
 import com.eyepetizer.user.export.models.ItemViewBindingEpoxyHolder_
@@ -42,8 +43,6 @@ class UserViewModel(initialState: UserState) : MavericksViewModel<UserState>(ini
         return userRepository.getTextPagingData().cachedIn(viewModelScope)
     }
 
-    fun savePosition(position: Int) = setState { copy(position = position) }
-
 }
 
 
@@ -64,7 +63,7 @@ class UserController :
 class UserFragment : MavericksFragment() {
 
     private val binding by viewBinding(FragmentUserBinding::bind)
-    private val userViewModel by navGraphViewModel(R.id.nav_user_graph, UserViewModel::class)
+    private val userViewModel by fragmentViewModel(UserViewModel::class)
     private val userController = UserController()
 
     override fun initData(bundle: Bundle?) {
@@ -74,15 +73,7 @@ class UserFragment : MavericksFragment() {
     override fun onBindLayout(): Int = R.layout.fragment_user
 
     override fun initView(savedInstanceState: Bundle?, contentView: View) {
-        userController.onRestoreInstanceState(savedInstanceState)
         binding.epoxyRecyclerView.setController(userController)
-
-//        binding.epoxyRecyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
-//            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
-//                super.onScrolled(recyclerView, dx, dy)
-//                userViewModel.savePosition((recyclerView.layoutManager as LinearLayoutManager).findFirstCompletelyVisibleItemPosition())
-//            }
-//        })
     }
 
     override fun doBusiness() {
@@ -92,11 +83,6 @@ class UserFragment : MavericksFragment() {
             }
         }
 
-    }
-
-    override fun onSaveInstanceState(outState: Bundle) {
-        super.onSaveInstanceState(outState)
-        userController.onSaveInstanceState(outState)
     }
 
     override fun invalidate() {
