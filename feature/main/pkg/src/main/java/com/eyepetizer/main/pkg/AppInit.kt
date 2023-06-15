@@ -51,9 +51,8 @@ fun initMain(context: Context) {
 }
 
 private fun initCrashReport(context: Context) {
-    CrashReportHelper.crashReport = BuglyHelper().apply {
-        initCrashReport(context, BuildConfig.DEBUG)
-    }
+    CrashReportHelper.crashReport = BuglyHelper()
+    CrashReportHelper.initCrashReport(context, BuildConfig.DEBUG)
 }
 
 
