@@ -2,6 +2,8 @@ package com.eyepetizer.found.export
 
 import android.os.Bundle
 import android.view.View
+import by.kirich1409.viewbindingdelegate.viewBinding
+import com.eyepetizer.found.export.databinding.FragmentFoundBinding
 import com.tongsr.base.base.BaseFragment
 
 /**
@@ -12,6 +14,8 @@ import com.tongsr.base.base.BaseFragment
  * @description 发现页面
  */
 class FoundFragment: BaseFragment() {
+
+    private val binding by viewBinding(FragmentFoundBinding::bind)
 
     override fun initData(bundle: Bundle?) {
         
@@ -24,7 +28,7 @@ class FoundFragment: BaseFragment() {
     }
 
     override fun doBusiness() {
-        
+        binding.loadingView.start()
     }
 
 }

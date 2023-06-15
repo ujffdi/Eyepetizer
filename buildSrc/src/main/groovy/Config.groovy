@@ -145,6 +145,7 @@ class Config {
             // 状态栏
             immersionbar            : new LibConfig(path: "com.geyifeng.immersionbar:immersionbar:3.2.2"),
             immersionbarKtx         : new LibConfig(path: "com.geyifeng.immersionbar:immersionbar-ktx:3.2.2"),
+            lottie                  : new LibConfig(path: "com.airbnb.android:lottie:6.0.1"),
     ]
 
     static monitor = [

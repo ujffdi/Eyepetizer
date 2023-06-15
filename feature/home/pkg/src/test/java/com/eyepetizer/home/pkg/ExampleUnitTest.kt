@@ -1,5 +1,6 @@
 package com.eyepetizer.home.pkg
 
+import com.tongsr.core.util.RegexUtils
 import org.junit.Test
 
 import org.junit.Assert.*
@@ -12,6 +13,6 @@ import org.junit.Assert.*
 class ExampleUnitTest {
     @Test
     fun addition_isCorrect() {
-        assertEquals(4, 2 + 2)
+        assertTrue(RegexUtils.isEmail("12344@qq.com"))
     }
 }
