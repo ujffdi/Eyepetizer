@@ -28,7 +28,7 @@ class FoundFragment: BaseFragment() {
     }
 
     override fun doBusiness() {
-        binding.loadingView.start()
+        binding.loadingView.startAnimation()
     }
 
 }

@@ -1,14 +1,11 @@
 package com.tongsr.common.widget
 
-import android.animation.AnimatorSet
 import android.animation.ObjectAnimator
 import android.content.Context
 import android.util.AttributeSet
-import android.view.View
-import android.view.animation.Animation
 import android.view.animation.LinearInterpolator
-import android.view.animation.RotateAnimation
 import android.widget.FrameLayout
+import android.widget.ImageView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.tongsr.common.R
 import com.tongsr.common.databinding.ViewLoadingBinding
@@ -29,96 +26,70 @@ class LoadingView @JvmOverloads constructor(
         inflate(context, R.layout.view_loading, this)
     }
 
-    private val rotationData = listOf(
-        RotationData(R.id.loading_alpha_60, 0f, 360f),
-        RotationData(R.id.loading_alpha_70, 0f, 360f),
-        RotationData(R.id.loading_alpha_80, 0f, 360f),
-        RotationData(R.id.loading_alpha_90, 0f, 360f)
-    )
+    private val binding by viewBinding(ViewLoadingBinding::bind)
+
+    // 定义 ObjectAnimator 对象的全局变量，以便可以在其他方法中访问
+    private var rotationAnimator1: ObjectAnimator? = null
+    private var rotationAnimator2: ObjectAnimator? = null
+    private var rotationAnimator3: ObjectAnimator? = null
+    private var rotationAnimator4: ObjectAnimator? = null
+
+    private val duration = 3000L
+    private val interpolator = LinearInterpolator()
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
-        stop()
+        cancelOrPauseAnimation()
     }
 
-    private val binding by viewBinding(ViewLoadingBinding::bind)
+    /**
+     * 设置旋转动画
+     *
+     * @param imageView 需要设置动画的 ImageView
+     * @param startDelay 动画延迟播放的时间
+     */
+    private fun setRotationAnimation(imageView: ImageView, startDelay: Long) {
+        val rotationAnim = ObjectAnimator.ofFloat(imageView, PROPERTY_NAME, 0f, 360f)
+        rotationAnim.duration = duration
+        rotationAnim.interpolator = interpolator
+        rotationAnim.startDelay = startDelay
+        rotationAnim.repeatCount = ObjectAnimator.INFINITE
 
-    fun start() {
-//        val animatorSet = AnimatorSet()
-//
-//        val rotationAnim1 =
-//            ObjectAnimator.ofFloat(binding.loadingAlpha60, "rotation", 0f, 360f).apply {
-//                duration = 2500 // 设置动画时长，单位为毫秒
-//                interpolator = LinearInterpolator() // 设置插值器为线性插值器，实现连续流畅的旋转动画
-//                repeatCount = Animation.INFINITE // 设置重复次数为无限次
-//            }
-//        val rotationAnim2 =
-//            ObjectAnimator.ofFloat(binding.loadingAlpha70, "rotation", 0f, 360f).apply {
-//                duration = 2500 // 设置动画时长，单位为毫秒
-//                interpolator = LinearInterpolator() // 设置插值器为线性插值器，实现连续流畅的旋转动画
-//                repeatCount = Animation.INFINITE // 设置重复次数为无限次
-//            }
-//        val rotationAnim3 =
-//            ObjectAnimator.ofFloat(binding.loadingAlpha80, "rotation", 0f, 360f).apply {
-//                duration = 2500 // 设置动画时长，单位为毫秒
-//                interpolator = LinearInterpolator() // 设置插值器为线性插值器，实现连续流畅的旋转动画
-//                repeatCount = Animation.INFINITE // 设置重复次数为无限次
-//            }
-//
-//        val rotationAnim4 =
-//            ObjectAnimator.ofFloat(binding.loadingAlpha90, "rotation", 0f, 360f).apply {
-//                duration = 2500 // 设置动画时长，单位为毫秒
-//                interpolator = LinearInterpolator() // 设置插值器为线性插值器，实现连续流畅的旋转动画
-//                repeatCount = Animation.INFINITE // 设置重复次数为无限次
-//            }
-//
-//        animatorSet.playSequentially(
-//            rotationAnim1,
-//            rotationAnim2,
-//            rotationAnim3,
-//            rotationAnim4
-//        )
-//
-//        animatorSet.start()
-        startRotationAnimation(0)
-    }
-
-    fun stop() {
-        binding.loadingAlpha90.clearAnimation()
-        binding.loadingAlpha80.clearAnimation()
-        binding.loadingAlpha70.clearAnimation()
-        binding.loadingAlpha60.clearAnimation()
-    }
-
-    private fun createAnimation(view: View): ObjectAnimator {
-        val rotationAnim = ObjectAnimator.ofFloat(view, "rotation", 0f, 360f).apply {
-            duration = 2500 // 设置动画时长，单位为毫秒
-            interpolator = LinearInterpolator() // 设置插值器为线性插值器，实现连续流畅的旋转动画
-            repeatCount = Animation.INFINITE // 设置重复次数为无限次
-
+        // 根据 ImageView 存储相应的 ObjectAnimator 对象
+        when (imageView) {
+            binding.loadingAlpha60 -> rotationAnimator1 = rotationAnim
+            binding.loadingAlpha70 -> rotationAnimator2 = rotationAnim
+            binding.loadingAlpha80 -> rotationAnimator3 = rotationAnim
+            binding.loadingAlpha90 -> rotationAnimator4 = rotationAnim
         }
-        return rotationAnim
+        rotationAnim.start()
     }
 
-    private fun startRotationAnimation(index: Int) {
-        if (index >= rotationData.size) {
-            // 所有动画执行完毕
-            return
-        }
-
-        val rotation = rotationData[index]
-        val view = findViewById<View>(rotation.viewId)
-
-        view.animate()
-            .rotation(rotation.startAngle)
-            .setDuration(3000)
-            .withEndAction {
-                // 递归调用，执行下一个动画
-                startRotationAnimation(index + 1)
-            }
-            .start()
+    fun startAnimation() {
+        setRotationAnimation(binding.loadingAlpha90, 1500)
+        setRotationAnimation(binding.loadingAlpha80, 1000)
+        setRotationAnimation(binding.loadingAlpha70, 500)
+        setRotationAnimation(binding.loadingAlpha60, 0)
     }
 
-    private data class RotationData(val viewId: Int, val startAngle: Float, val endAngle: Float)
+    /**
+     * 取消或暂停动画
+     */
+    fun cancelOrPauseAnimation() {
+        rotationAnimator1?.cancel()
+        rotationAnimator2?.cancel()
+        rotationAnimator3?.cancel()
+        rotationAnimator4?.cancel()
+
+        // 或者使用 pause() 方法暂停动画
+        // rotationAnimator1?.pause()
+        // rotationAnimator2?.pause()
+        // rotationAnimator3?.pause()
+        // rotationAnimator4?.pause()
+    }
+
+    companion object {
+        private const val PROPERTY_NAME = "rotation"
+    }
 
 }
