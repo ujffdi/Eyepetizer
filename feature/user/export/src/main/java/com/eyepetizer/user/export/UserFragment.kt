@@ -3,6 +3,7 @@ package com.eyepetizer.user.export
 import android.os.Bundle
 import android.view.View
 import androidx.lifecycle.lifecycleScope
+import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -18,6 +19,9 @@ import com.eyepetizer.user.export.models.ItemViewBindingEpoxyHolder_
 import com.eyepetizer.user.export.service.ITestPathService
 import com.therouter.TheRouter
 import com.tongsr.base.mavericks.MavericksFragment
+import com.tongsr.common.widget.LoaderMoreView
+import com.tongsr.common.widget.LoaderMoreViewModel_
+import com.tongsr.core.util.LogUtils
 import com.tongsr.router.routerNavigation
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
@@ -49,6 +53,14 @@ class UserViewModel(initialState: UserState) : MavericksViewModel<UserState>(ini
 class UserController :
     PagingDataEpoxyController<TextModel>(diffingHandler = EpoxyAsyncUtil.getAsyncBackgroundHandler()) {
 
+    var isLoading = false
+        set(value) {
+            field = value
+            if (field) {
+                requestModelBuild()
+            }
+        }
+
     override fun buildItemModel(currentPosition: Int, item: TextModel?): EpoxyModel<*> {
         return item?.let {
             ItemViewBindingEpoxyHolder_().id(item.text).title(item.text).listener {
@@ -58,6 +70,18 @@ class UserController :
         } ?: ItemViewBindingEpoxyHolder_().id(-currentPosition)
     }
 
+    override fun addModels(models: List<EpoxyModel<*>>) {
+        if (isLoading) {
+            super.addModels(
+                models.plus(
+                    LoaderMoreViewModel_()
+                        .id("loading")
+                ).distinct()
+            )
+        } else {
+            super.addModels(models)
+        }
+    }
 }
 
 class UserFragment : MavericksFragment() {
@@ -81,6 +105,20 @@ class UserFragment : MavericksFragment() {
             userViewModel.getTextPagingData().collectLatest {
                 userController.submitData(it)
             }
+        }
+        userController.addLoadStateListener {
+            when (it.source.append) {
+                is LoadState.Loading -> {
+                    userController.isLoading = true
+                }
+                is LoadState.NotLoading -> {
+                    userController.isLoading = false
+                }
+                is LoadState.Error -> {
+                    userController.isLoading = false
+                }
+            }
+            LogUtils.e(it.toString())
         }
 
     }

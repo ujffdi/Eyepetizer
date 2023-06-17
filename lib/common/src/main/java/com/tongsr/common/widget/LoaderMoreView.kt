@@ -8,18 +8,20 @@ import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.airbnb.epoxy.ModelView
 import com.tongsr.common.R
-import com.tongsr.common.databinding.LoadingViewBinding
-
+import com.tongsr.common.databinding.LoaderMoreViewBinding
+import com.tongsr.common.databinding.LoaderViewBinding
 
 /**
  * @author tongsr
  * @version 1.0
- * @date 2023/6/16
+ * @date 2023/6/17
  * @email ujffdtfivkg@gmail.com
- * @description 加载中视图
+ * @description
  */
-class LoadingView @JvmOverloads constructor(
+@ModelView(autoLayout = ModelView.Size.WRAP_WIDTH_WRAP_HEIGHT)
+class LoaderMoreView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
 
@@ -53,7 +55,7 @@ class LoadingView @JvmOverloads constructor(
     }
 
     // 一定要在 init 下面
-    private val binding by viewBinding(LoadingViewBinding::bind)
+    private val binding by viewBinding(LoaderMoreViewBinding::bind)
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()
@@ -98,5 +100,4 @@ class LoadingView @JvmOverloads constructor(
     companion object {
         private const val PROPERTY_NAME = "rotation"
     }
-
 }

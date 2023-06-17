@@ -40,6 +40,7 @@ class DailyPaperFragment : MavericksFragment() {
                     authorAvatarUrl("https://img.eyepetizer.net/community/avatar/1632406857021.jpeg?x-oss-process=image/resize,w_72")
                     videoDuration("00:10")
                 }
+
             }
         }
     }
