@@ -21,4 +21,5 @@ dependencies {
     api Config.libs.epoxyPaging.path
     api Config.libs.immersionbar.path
     api Config.libs.immersionbarKtx.path
+    api Config.libs.lottie.path
 }
