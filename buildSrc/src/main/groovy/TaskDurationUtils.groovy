@@ -51,8 +51,8 @@ class TaskDurationUtils {
                     })
                     StringBuilder sb = new StringBuilder()
                     int buildSec = (System.currentTimeMillis() - startMillis) / 1000;
-                    int m = buildSec / 60;
-                    int s = buildSec % 60;
+                    int m = buildSec / 60
+                    int s = buildSec % 60
                     def timeInfo = (m == 0 ? "${s}s" : "${m}m ${s}s (${buildSec}s)")
                     sb.append("BUILD FINISHED in $timeInfo\n")
                     taskInfoList.each {
