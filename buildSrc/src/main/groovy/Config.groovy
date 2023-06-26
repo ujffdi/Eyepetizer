@@ -11,7 +11,7 @@ class Config {
     static versionName = '1.0.0.0'
 
     // libs 的版本号
-    static routerVersion = "1.1.4-rc2"
+    static routerVersion = "1.1.4-rc5"
     static retrofitVersion = "2.9.0"
     static coroutinesVersion = "1.6.4"
     // 设置最新的2.6.1会和mavericks有冲突

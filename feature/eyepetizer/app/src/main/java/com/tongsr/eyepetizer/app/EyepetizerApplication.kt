@@ -1,5 +1,7 @@
 package com.tongsr.eyepetizer.app
 
+import com.airbnb.mvrx.Mavericks
+import com.airbnb.mvrx.navigation.DefaultNavigationViewModelDelegateFactory
 import com.tongsr.base.BaseApplication
 
 /**
@@ -9,5 +11,14 @@ import com.tongsr.base.BaseApplication
  * @email ujffdtfivkg@gmail.com
  * @description Application
  */
-class EyepetizerApplication: BaseApplication() {
+class EyepetizerApplication : BaseApplication() {
+
+    override fun onCreate() {
+        super.onCreate()
+        Mavericks.initialize(
+            this,
+            viewModelDelegateFactory = DefaultNavigationViewModelDelegateFactory()
+        )
+    }
+
 }

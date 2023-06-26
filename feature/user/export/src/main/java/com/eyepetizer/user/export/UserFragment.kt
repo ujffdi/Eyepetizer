@@ -9,6 +9,7 @@ import androidx.paging.cachedIn
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.EpoxyAsyncUtil
 import com.airbnb.epoxy.EpoxyModel
+import com.airbnb.epoxy.EpoxyViewHolder
 import com.airbnb.epoxy.paging3.PagingDataEpoxyController
 import com.airbnb.mvrx.MavericksState
 import com.airbnb.mvrx.MavericksViewModel
@@ -53,14 +54,6 @@ class UserViewModel(initialState: UserState) : MavericksViewModel<UserState>(ini
 class UserController :
     PagingDataEpoxyController<TextModel>(diffingHandler = EpoxyAsyncUtil.getAsyncBackgroundHandler()) {
 
-    var isLoading = false
-        set(value) {
-            field = value
-            if (field) {
-                requestModelBuild()
-            }
-        }
-
     override fun buildItemModel(currentPosition: Int, item: TextModel?): EpoxyModel<*> {
         return item?.let {
             ItemViewBindingEpoxyHolder_().id(item.text).title(item.text).listener {
@@ -70,18 +63,16 @@ class UserController :
         } ?: ItemViewBindingEpoxyHolder_().id(-currentPosition)
     }
 
-    override fun addModels(models: List<EpoxyModel<*>>) {
-        if (isLoading) {
-            super.addModels(
-                models.plus(
-                    LoaderMoreViewModel_()
-                        .id("loading")
-                ).distinct()
-            )
-        } else {
-            super.addModels(models)
-        }
+    override fun onModelBound(
+        holder: EpoxyViewHolder,
+        boundModel: EpoxyModel<*>,
+        position: Int,
+        previouslyBoundModel: EpoxyModel<*>?
+    ) {
+        super.onModelBound(holder, boundModel, position, previouslyBoundModel)
+
     }
+
 }
 
 class UserFragment : MavericksFragment() {
@@ -104,23 +95,10 @@ class UserFragment : MavericksFragment() {
         lifecycleScope.launch {
             userViewModel.getTextPagingData().collectLatest {
                 userController.submitData(it)
+                userController.addModels(listOf(LoaderMoreViewModel_().id("loader")))
+                userController.requestForcedModelBuild()
             }
         }
-        userController.addLoadStateListener {
-            when (it.source.append) {
-                is LoadState.Loading -> {
-                    userController.isLoading = true
-                }
-                is LoadState.NotLoading -> {
-                    userController.isLoading = false
-                }
-                is LoadState.Error -> {
-                    userController.isLoading = false
-                }
-            }
-            LogUtils.e(it.toString())
-        }
-
     }
 
     override fun invalidate() {

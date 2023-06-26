@@ -46,8 +46,6 @@ fun initMain(context: Context) {
     LocalStorageManager.init(context as Application)
 
     initCrashReport(context)
-
-    Mavericks.initialize(context, viewModelDelegateFactory = DefaultNavigationViewModelDelegateFactory())
 }
 
 private fun initCrashReport(context: Context) {

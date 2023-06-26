@@ -9,7 +9,7 @@ import android.widget.FrameLayout
 import android.widget.ImageView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.tongsr.common.R
-import com.tongsr.common.databinding.LoadingViewBinding
+import com.tongsr.common.databinding.LoaderViewBinding
 
 
 /**
@@ -53,7 +53,7 @@ class LoadingView @JvmOverloads constructor(
     }
 
     // 一定要在 init 下面
-    private val binding by viewBinding(LoadingViewBinding::bind)
+    private val binding by viewBinding(LoaderViewBinding::bind)
 
     override fun onDetachedFromWindow() {
         super.onDetachedFromWindow()

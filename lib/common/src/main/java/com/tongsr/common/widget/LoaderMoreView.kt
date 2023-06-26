@@ -8,19 +8,20 @@ import android.view.animation.LinearInterpolator
 import android.widget.FrameLayout
 import android.widget.ImageView
 import by.kirich1409.viewbindingdelegate.viewBinding
+import com.airbnb.epoxy.AfterPropsSet
 import com.airbnb.epoxy.ModelView
+import com.airbnb.epoxy.OnViewRecycled
 import com.tongsr.common.R
 import com.tongsr.common.databinding.LoaderMoreViewBinding
-import com.tongsr.common.databinding.LoaderViewBinding
 
 /**
  * @author tongsr
  * @version 1.0
  * @date 2023/6/17
  * @email ujffdtfivkg@gmail.com
- * @description
+ * @description LoaderMoreView
  */
-@ModelView(autoLayout = ModelView.Size.WRAP_WIDTH_WRAP_HEIGHT)
+@ModelView(autoLayout = ModelView.Size.MATCH_WIDTH_WRAP_HEIGHT)
 class LoaderMoreView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : FrameLayout(context, attrs, defStyleAttr) {
@@ -51,16 +52,11 @@ class LoaderMoreView @JvmOverloads constructor(
     private var animationSet = AnimatorSet()
 
     init {
-        inflate(context, R.layout.loader_view, this)
+        inflate(context, R.layout.loader_more_view, this)
     }
 
     // 一定要在 init 下面
     private val binding by viewBinding(LoaderMoreViewBinding::bind)
-
-    override fun onDetachedFromWindow() {
-        super.onDetachedFromWindow()
-        cancelAnimation()
-    }
 
     /**
      * 设置旋转动画
@@ -77,6 +73,8 @@ class LoaderMoreView @JvmOverloads constructor(
         return rotationAnim
     }
 
+
+    @AfterPropsSet
     fun startAnimation() {
         cancelAnimation()
         val animatorAlpha80 = createObjectAnimator(binding.loadingAlpha80, averageDelay * 3)
@@ -91,6 +89,7 @@ class LoaderMoreView @JvmOverloads constructor(
     /**
      * 取消或暂停动画
      */
+    @OnViewRecycled
     fun cancelAnimation() {
         if (animationSet.isRunning) {
             animationSet.cancel()
@@ -100,4 +99,5 @@ class LoaderMoreView @JvmOverloads constructor(
     companion object {
         private const val PROPERTY_NAME = "rotation"
     }
+
 }

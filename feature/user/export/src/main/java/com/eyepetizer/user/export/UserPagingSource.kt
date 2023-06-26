@@ -2,6 +2,9 @@ package com.eyepetizer.user.export
 
 import androidx.paging.PagingSource
 import androidx.paging.PagingState
+import com.tongsr.core.util.ThreadUtils
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.runBlocking
 import okio.IOException
 import retrofit2.HttpException
 
@@ -28,7 +31,12 @@ class UserPagingSource : PagingSource<Int, TextModel>() {
             val data = FakeDataManager.getTextData(page, pageSize)
             val prevKey = if (page > 1) page - 1 else null
             val nextKey = if (data.isNotEmpty()) page + 1 else null
-            LoadResult.Page(data = data, prevKey = prevKey, nextKey = nextKey)
+            runBlocking {
+                if (page == 1) {
+                    delay(1000)
+                }
+                LoadResult.Page(data = data, prevKey = prevKey, nextKey = nextKey)
+            }
         } catch (exception: IOException) {
             LoadResult.Error(exception)
         } catch (exception: HttpException) {
