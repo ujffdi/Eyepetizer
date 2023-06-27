@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.EpoxyAsyncUtil
 import com.airbnb.epoxy.EpoxyModel
@@ -22,6 +23,7 @@ import com.therouter.TheRouter
 import com.tongsr.base.mavericks.MavericksFragment
 import com.tongsr.common.widget.LoaderMoreView
 import com.tongsr.common.widget.LoaderMoreViewModel_
+import com.tongsr.core.component.EndlessRecyclerViewScrollListener
 import com.tongsr.core.util.LogUtils
 import com.tongsr.router.routerNavigation
 import kotlinx.coroutines.flow.Flow
@@ -57,20 +59,11 @@ class UserController :
     override fun buildItemModel(currentPosition: Int, item: TextModel?): EpoxyModel<*> {
         return item?.let {
             ItemViewBindingEpoxyHolder_().id(item.text).title(item.text).listener {
-                val testMainPath = TheRouter.get(ITestPathService::class.java)?.getTestMainPath() ?: ""
+                val testMainPath =
+                    TheRouter.get(ITestPathService::class.java)?.getTestMainPath() ?: ""
                 routerNavigation(testMainPath)
             }
         } ?: ItemViewBindingEpoxyHolder_().id(-currentPosition)
-    }
-
-    override fun onModelBound(
-        holder: EpoxyViewHolder,
-        boundModel: EpoxyModel<*>,
-        position: Int,
-        previouslyBoundModel: EpoxyModel<*>?
-    ) {
-        super.onModelBound(holder, boundModel, position, previouslyBoundModel)
-
     }
 
 }
@@ -89,20 +82,26 @@ class UserFragment : MavericksFragment() {
 
     override fun initView(savedInstanceState: Bundle?, contentView: View) {
         binding.epoxyRecyclerView.setController(userController)
+
     }
 
     override fun doBusiness() {
         lifecycleScope.launch {
             userViewModel.getTextPagingData().collectLatest {
                 userController.submitData(it)
-                userController.addModels(listOf(LoaderMoreViewModel_().id("loader")))
-                userController.requestForcedModelBuild()
             }
+        }
+
+        runOnUiThreadDelayed(3000){
+
+            userController.addModels(listOf(LoaderMoreViewModel_().id("loader")))
+            userController.requestForcedModelBuild()
         }
     }
 
     override fun invalidate() {
 
     }
+
 
 }
