@@ -73,7 +73,11 @@ interface IBaseView {
         handler.postDelayed(runnable, delayMillis)
     }
 
-    private val handler: Handler
+    fun removeCallbacks(runnable: Runnable) {
+        handler.removeCallbacks(runnable)
+    }
+
+    val handler: Handler
         get() = ThreadUtils.getMainHandler()
 
 }

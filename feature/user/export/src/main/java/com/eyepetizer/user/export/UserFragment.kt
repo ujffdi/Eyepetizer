@@ -6,6 +6,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.paging.LoadState
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.airbnb.epoxy.EpoxyAsyncUtil
@@ -23,6 +24,7 @@ import com.therouter.TheRouter
 import com.tongsr.base.mavericks.MavericksFragment
 import com.tongsr.common.widget.LoaderMoreView
 import com.tongsr.common.widget.LoaderMoreViewModel_
+import com.tongsr.common.widget.loaderMoreView
 import com.tongsr.core.component.EndlessRecyclerViewScrollListener
 import com.tongsr.core.util.LogUtils
 import com.tongsr.router.routerNavigation
@@ -56,6 +58,16 @@ class UserViewModel(initialState: UserState) : MavericksViewModel<UserState>(ini
 class UserController :
     PagingDataEpoxyController<TextModel>(diffingHandler = EpoxyAsyncUtil.getAsyncBackgroundHandler()) {
 
+    /**
+     * 是否正在加载更多
+     */
+    var isLoading: Boolean = false
+        set(value) {
+            field = value
+            LogUtils.e("触发:$value")
+            requestForcedModelBuild()
+        }
+
     override fun buildItemModel(currentPosition: Int, item: TextModel?): EpoxyModel<*> {
         return item?.let {
             ItemViewBindingEpoxyHolder_().id(item.text).title(item.text).listener {
@@ -64,6 +76,22 @@ class UserController :
                 routerNavigation(testMainPath)
             }
         } ?: ItemViewBindingEpoxyHolder_().id(-currentPosition)
+    }
+
+    override fun addModels(models: List<EpoxyModel<*>>) {
+        when {
+            isLoading -> {
+                loaderMoreView {
+                    id("loading")
+                    onBind { _, _, _ ->
+                        LogUtils.e("loaderMoreView onBind")
+                    }
+                }
+            }
+        }
+        super.addModels(models)
+        LogUtils.e(models.size)
+
     }
 
 }
@@ -82,7 +110,6 @@ class UserFragment : MavericksFragment() {
 
     override fun initView(savedInstanceState: Bundle?, contentView: View) {
         binding.epoxyRecyclerView.setController(userController)
-
     }
 
     override fun doBusiness() {
@@ -91,11 +118,16 @@ class UserFragment : MavericksFragment() {
                 userController.submitData(it)
             }
         }
+        userController.addLoadStateListener {
+            LogUtils.e(it.append.toString(), it.source.append.toString())
+            val isLoading = it.source.append is LoadState.Loading
 
-        runOnUiThreadDelayed(3000){
-
-            userController.addModels(listOf(LoaderMoreViewModel_().id("loader")))
-            userController.requestForcedModelBuild()
+            if (isLoading) {
+                // 正在加载中，执行相关操作
+                userController.isLoading = true
+            } else {
+                // 加载完成或加载失败，执行其他操作
+            }
         }
     }
 
@@ -103,5 +135,14 @@ class UserFragment : MavericksFragment() {
 
     }
 
+    // 隐藏加载中样式
+    private fun hideLoading() {
+        removeCallbacks(hideLoadingRunnable)
+        runOnUiThreadDelayed(2000L, hideLoadingRunnable)
+    }
+
+    private val hideLoadingRunnable = Runnable {
+        userController.isLoading = false
+    }
 
 }

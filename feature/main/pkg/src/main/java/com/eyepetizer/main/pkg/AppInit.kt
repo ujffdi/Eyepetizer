@@ -2,6 +2,8 @@ package com.eyepetizer.main.pkg
 
 import android.app.Application
 import android.content.Context
+import com.airbnb.epoxy.EpoxyAsyncUtil
+import com.airbnb.epoxy.EpoxyController
 import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.navigation.DefaultNavigationViewModelDelegateFactory
 import com.therouter.app.flowtask.lifecycle.FlowTask
@@ -43,9 +45,21 @@ fun initMain(context: Context) {
 
     initCrashUtils()
 
+    initEpoxy()
+
     LocalStorageManager.init(context as Application)
 
     initCrashReport(context)
+}
+
+private fun initEpoxy() {
+    // 处理 diff 在异步
+    // 或者使用 AsyncEpoxyController
+    EpoxyController.defaultDiffingHandler = EpoxyAsyncUtil.getAsyncBackgroundHandler()
+    // 处理 model building 在异步
+    // 请注意，如果您使用异步模型构建，则必须保证所有数据访问都是线程安全的 - Epoxy 无法帮助您。
+    // 这意味着您的 EpoxyController#buildModels 实现在其所有数据访问中都是线程安全的。
+    //EpoxyController.defaultModelBuildingHandler = EpoxyAsyncUtil.getAsyncBackgroundHandler()
 }
 
 private fun initCrashReport(context: Context) {
