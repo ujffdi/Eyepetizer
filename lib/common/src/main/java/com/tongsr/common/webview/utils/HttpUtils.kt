@@ -1,6 +1,6 @@
 package com.tongsr.common.webview.utils
 
-import com.tongsr.core.component.web.service.WebApiService
+import com.tongsr.common.webview.service.WebApiService
 import com.tongsr.data.remote.logging.Level
 import com.tongsr.data.remote.logging.LoggingInterceptor
 import okhttp3.OkHttpClient

@@ -1,4 +1,4 @@
-package com.tongsr.core.component.web.service
+package com.tongsr.common.webview.service
 
 import okhttp3.ResponseBody
 import retrofit2.http.GET
