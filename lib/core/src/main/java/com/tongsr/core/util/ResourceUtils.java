@@ -142,7 +142,7 @@ public final class ResourceUtils {
      * Copy the file from assets.
      *
      * @param assetsFilePath The path of file in assets.
-     * @param destFilePath   The path of destination file.
+     * @param destFilePath   the path of destination file.
      * @return {@code true}: success<br>{@code false}: fail
      */
     public static boolean copyFileFromAssets(final String assetsFilePath, final String destFilePath) {

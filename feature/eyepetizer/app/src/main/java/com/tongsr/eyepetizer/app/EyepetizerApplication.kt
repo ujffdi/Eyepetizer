@@ -3,6 +3,7 @@ package com.tongsr.eyepetizer.app
 import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.navigation.DefaultNavigationViewModelDelegateFactory
 import com.tongsr.base.BaseApplication
+import com.tongsr.common.coil.CoilUtils
 
 /**
  * @author tongsr
@@ -19,6 +20,8 @@ class EyepetizerApplication : BaseApplication() {
             this,
             viewModelDelegateFactory = DefaultNavigationViewModelDelegateFactory()
         )
+
+        CoilUtils.init(this)
     }
 
 }

@@ -11,7 +11,7 @@ class Config {
     static versionName = '1.0.0.0'
 
     // libs 的版本号
-    static routerVersion = "1.1.4-rc5"
+    static routerVersion = "1.1.4-rc6"
     static retrofitVersion = "2.9.0"
     static coroutinesVersion = "1.6.4"
     // 设置最新的2.6.1会和mavericks有冲突
@@ -26,6 +26,7 @@ class Config {
     static paging3version = "3.1.1"
     static mavericksVersion = "3.0.2"
     static epoxyVersion = "5.1.3"
+    static boosterVersion = "4.16.2"
 
     static modules = [
             /*Don't delete this line*/
@@ -153,6 +154,38 @@ class Config {
             bugly     : new LibConfig(path: "com.tencent.bugly:crashreport:latest.release"),
             // leakcanary;debugImplementation引用,检测内存
             leakcanary: new LibConfig(path: "com.squareup.leakcanary:leakcanary-android:2.10"),
+            // didi booster 组件
+            booster                    : new LibConfig(path: "com.didiglobal.booster:booster-gradle-plugin:$boosterVersion"),
+            // WebP 图片压缩
+            boosterCompressionCwebp    : new LibConfig(path: "com.didiglobal.booster:booster-task-compression-cwebp:$boosterVersion"),
+            // 可以使用pngquant进行图像压缩而无需安装
+            boosterPngquantProvider    : new LibConfig(path: "io.johnsonlee.booster:booster-pngquant-provider:2.4.0"),
+            // 采用 pngquant 对资源进行压缩
+            boosterCompressionPngquant : new LibConfig(path: "com.didiglobal.booster:booster-task-compression-pngquant:$boosterVersion"),
+            // 移除冗余资源
+            boosterResourceDeredundancy: new LibConfig(path: "com.didiglobal.booster:booster-task-resource-deredundancy:$boosterVersion"),
+            // 资源索引内联。使用后BackgroundLibrary库无效（仅写在XML的属性无效）
+            boosterRInline             : new LibConfig(path: "com.didiglobal.booster:booster-transform-r-inline:$boosterVersion"),
+            // DataBinding BR索引内联
+            boosterBrInline            : new LibConfig(path: "com.didiglobal.booster:booster-transform-br-inline:$boosterVersion"),
+            // 系统崩溃兜底
+            boosterActivityThread      : new LibConfig(path: "com.didiglobal.booster:booster-transform-activity-thread:$boosterVersion"),
+            // Finalizer 导致的 TimeoutException
+            boosterFinalizer           : new LibConfig(path: "com.didiglobal.booster:booster-transform-finalizer-watchdog-daemon:$boosterVersion"),
+            // Android 7.1 Toast 崩溃
+            boosterToast               : new LibConfig(path: "com.didiglobal.booster:booster-transform-toast:$boosterVersion"),
+            // 资源为 null 的问题
+            boosterResCheck            : new LibConfig(path: "com.didiglobal.booster:booster-transform-res-check:$boosterVersion"),
+            // 修复 MediaPlayer 崩溃
+            boosterMediaPlayer         : new LibConfig(path: "com.didiglobal.booster:booster-transform-media-player:$boosterVersion"),
+            // SharedPreferences 优化
+            boosterSharedPreferences   : new LibConfig(path: "com.didiglobal.booster:booster-transform-shared-preferences:$boosterVersion"),
+            // ZIP 文件压缩
+            boosterZip                 : new LibConfig(path: "com.didiglobal.booster:booster-task-compression-processed-res:$boosterVersion"),
+            // 静态分析
+            boosterAnalyser            : new LibConfig(path: "com.didiglobal.booster:booster-task-analyser:$boosterVersion"),
+            // 线程优化
+            boosterThread              : new LibConfig(path: "com.didiglobal.booster:booster-transform-thread:$boosterVersion"),
             // 计划引进
             // booster（https://github.com/didi/booster）用于监控项目各方面和修复
             // matrix（https://github.com/Tencent/matrix） 用于监控项目各方面
