@@ -22,4 +22,5 @@ dependencies {
     api Config.libs.immersionbar.path
     api Config.libs.immersionbarKtx.path
     api Config.libs.lottie.path
+    api 'com.squareup.wire:wire-runtime:4.4.1'
 }

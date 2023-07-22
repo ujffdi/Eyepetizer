@@ -1,4 +1,4 @@
-package com.tongsr.common
+package com.tongsr.common.coil
 
 import android.content.Context
 import android.graphics.Bitmap
