@@ -91,12 +91,6 @@ class UserFragment : MavericksFragment() {
                 userController.submitData(it)
             }
         }
-
-        runOnUiThreadDelayed(3000){
-
-            userController.addModels(listOf(LoaderMoreViewModel_().id("loader")))
-            userController.requestForcedModelBuild()
-        }
     }
 
     override fun invalidate() {
