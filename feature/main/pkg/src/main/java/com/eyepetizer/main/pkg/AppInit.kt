@@ -6,7 +6,7 @@ import com.airbnb.mvrx.Mavericks
 import com.airbnb.mvrx.navigation.DefaultNavigationViewModelDelegateFactory
 import com.therouter.app.flowtask.lifecycle.FlowTask
 import com.therouter.flow.TheRouterFlowTask
-import com.tongsr.common.CoilUtils
+import com.tongsr.common.coil.CoilUtils
 import com.tongsr.common.webview.WebViewPool
 import com.tongsr.core.app.CrashReportingTree
 import com.tongsr.core.util.AppUtils

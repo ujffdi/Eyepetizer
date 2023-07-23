@@ -32,7 +32,7 @@ class UserRepository constructor(scope: CoroutineScope) :
 
     companion object {
 
-        private const val PAGE_SIZE = 30
+        private const val PAGE_SIZE = 20
     }
 
 }

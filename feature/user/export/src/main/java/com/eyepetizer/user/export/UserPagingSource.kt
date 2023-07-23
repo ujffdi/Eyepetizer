@@ -28,12 +28,7 @@ class UserPagingSource : PagingSource<Int, TextModel>() {
         return try {
             val page = params.key ?: 1
             val pageSize = params.loadSize
-            val data = runBlocking {
-                if (page > 1) {
-                    delay(2000)
-                }
-                FakeDataManager.getTextData(page, pageSize)
-            }
+            val data = FakeDataManager.getTextData(page, pageSize)
             val prevKey = if (page > 1) page - 1 else null
             val nextKey = if (data.isNotEmpty()) page + 1 else null
             LoadResult.Page(data = data, prevKey = prevKey, nextKey = nextKey)

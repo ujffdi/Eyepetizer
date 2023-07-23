@@ -6,9 +6,13 @@ import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
 import coil.decode.VideoFrameDecoder
+import coil.imageLoader
 import coil.load
+import coil.request.ImageRequest
 import coil.request.videoFrameMicros
 import com.tongsr.base.base.BaseFragment
+import com.tongsr.common.svga.SVGADrawable
+import com.tongsr.common.svga.SVGAImageView
 import com.tongsr.core.util.FileIOUtils
 import com.tongsr.core.util.FileUtils
 import com.tongsr.core.util.LogUtils
@@ -36,10 +40,26 @@ class SquareFragment : BaseFragment() {
     override fun initView(savedInstanceState: Bundle?, contentView: View) {
 //        contentView.findViewById<ImageView>(R.id.image).loadPicture("https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?resize=476%2C280&ssl=1")
 
-        contentView.findViewById<ImageView>(R.id.image)
-            .load("file:///android_asset/login_welcome.mp4") {
-                videoFrameMicros(1000)
+//        contentView.findViewById<ImageView>(R.id.image)
+//            .load("file:///android_asset/login_welcome.mp4") {
+//                videoFrameMicros(1000)
+//            }
+
+        val request = ImageRequest.Builder(appContext)
+            .data("https://github.com/yyued/SVGA-Samples/blob/master/posche.svga?raw=true")
+            .target { drawable ->
+                // Handle the result.
+                LogUtils.e(drawable is SVGADrawable)
+                if (drawable is SVGADrawable) {
+                    contentView.findViewById<SVGAImageView>(R.id.image).apply {
+                        setVideoItem(drawable.videoItem)
+                        startAnimation()
+                    }
+
+                }
             }
+            .build()
+        val disposable = appContext.imageLoader.enqueue(request)
     }
 
     override fun doBusiness() {

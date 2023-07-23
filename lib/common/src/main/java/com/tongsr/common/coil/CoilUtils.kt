@@ -15,6 +15,7 @@ import coil.load
 import coil.memory.MemoryCache
 import coil.request.*
 import coil.transform.Transformation
+import com.tongsr.common.coil.svga.SVGADecoder
 import com.tongsr.core.extend.ifNotNull
 
 /**
@@ -55,6 +56,7 @@ object CoilUtils {
                     add(GifDecoder.Factory())
                 }
                 add(SvgDecoder.Factory())
+                add(SVGADecoder.Factory())
                 add(VideoFrameDecoder.Factory())
             }
             .build()
