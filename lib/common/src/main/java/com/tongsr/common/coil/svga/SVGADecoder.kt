@@ -5,7 +5,6 @@ import coil.decode.DecodeResult
 import coil.decode.Decoder
 import coil.decode.GifDecoder
 import coil.decode.ImageSource
-import coil.decode.SvgDecoder
 import coil.fetch.SourceResult
 import coil.request.Options
 import com.tongsr.common.svga.SVGADrawable
@@ -13,11 +12,9 @@ import com.tongsr.common.svga.SVGAVideoEntity
 import com.tongsr.common.svga.proto.MovieEntity
 import com.tongsr.core.util.LogUtils
 import kotlinx.coroutines.runInterruptible
-import okio.buffer
-import okio.inflate
-import okio.sink
+import okio.Buffer
+import okio.BufferedSource
 import java.io.ByteArrayOutputStream
-import java.io.IOException
 import java.util.zip.Inflater
 
 /**
@@ -30,58 +27,44 @@ class SVGADecoder constructor(
     private val options: Options,
 ) : Decoder {
 
-    override suspend fun decode() : DecodeResult {
+    override suspend fun decode() = runInterruptible {
+        LogUtils.e("解码SVGA开始", source.file().toFile().isSVGAUnZipFile())
+//        val byteArray = inflate(source.source().buffer.readByteArray())
+        val byteArray = bufferedSourceToByteArray(source.source())
+        val inflate = inflate(byteArray)
+        val movieEntity = MovieEntity.ADAPTER.decode(inflate)
+        val videoItem = SVGAVideoEntity(movieEntity, source.file().toFile())
+        LogUtils.e("返回SVGADrawable", movieEntity.toString())
 
-        LogUtils.e("解码SVGA开始")
-        var videoItem: SVGAVideoEntity? = null
-        inflate(source.source().buffer.readByteArray())?.let { byteArray ->
-            LogUtils.e("返回SVGADrawable")
-            videoItem = SVGAVideoEntity(
-                MovieEntity.ADAPTER.decode(byteArray), source.file().toFile(), 0, 0
-            )
-        }
-        return DecodeResult(
-            drawable = SVGADrawable(videoItem!!), isSampled = false
+        videoItem.prepare({
+        }, null)
+
+        DecodeResult(
+            drawable = SVGADrawable(videoItem), isSampled = false
         )
     }
 
-    private fun inflate(byteArray: ByteArray): ByteArray? {
-//        val inflater = Inflater()
-//        inflater.setInput(byteArray, 0, byteArray.size)
-//        val inflatedBytes = ByteArray(2048)
-//        ByteArrayOutputStream().use { inflatedOutputStream ->
-//            while (true) {
-//                val count = inflater.inflate(inflatedBytes, 0, 2048)
-//                if (count <= 0) {
-//                    break
-//                } else {
-//                    inflatedOutputStream.write(inflatedBytes, 0, count)
-//                }
-//            }
-//            inflater.end()
-//            return inflatedOutputStream.toByteArray()
-//        }
+    fun bufferedSourceToByteArray(bufferedSource: BufferedSource): ByteArray {
+        val buffer = Buffer()
+        bufferedSource.readAll(buffer)
+        return buffer.readByteArray()
+    }
+
+    private fun inflate(byteArray: ByteArray): ByteArray {
         val inflater = Inflater()
         inflater.setInput(byteArray, 0, byteArray.size)
-
-        return try {
-            val inflatedBytes = ByteArray(2048)
-            val inflatedOutputStream = ByteArrayOutputStream()
-            inflatedOutputStream.sink().buffer().use { bufferSink ->
-                while (true) {
-                    val count = inflater.inflate(inflatedBytes, 0, 2048)
-                    if (count <= 0) {
-                        break
-                    } else {
-                        bufferSink.write(inflatedBytes, 0, count)
-                    }
+        val inflatedBytes = ByteArray(2048)
+        ByteArrayOutputStream().use { inflatedOutputStream ->
+            while (true) {
+                val count = inflater.inflate(inflatedBytes, 0, 2048)
+                if (count <= 0) {
+                    break
+                } else {
+                    inflatedOutputStream.write(inflatedBytes, 0, count)
                 }
-                inflater.end()
-                bufferSink.flush()
             }
-            inflatedOutputStream.toByteArray()
-        } catch (e: IOException) {
-            null
+            inflater.end()
+            return inflatedOutputStream.toByteArray()
         }
     }
 
@@ -89,12 +72,9 @@ class SVGADecoder constructor(
 
         override fun create(
             result: SourceResult, options: Options, imageLoader: ImageLoader
-        ): Decoder? {
-//            val isApplicable = isApplicable(result)
-//            LogUtils.e(isApplicable, result.source.file())
-//            if (!isApplicable) return null
+        ): Decoder {
             LogUtils.e("创建SVGADecoder")
-            return SvgDecoder(result.source, options)
+            return SVGADecoder(result.source, options)
         }
 
         private fun isApplicable(result: SourceResult): Boolean {

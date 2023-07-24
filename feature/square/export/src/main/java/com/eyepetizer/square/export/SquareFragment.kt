@@ -5,12 +5,15 @@ import android.net.Uri
 import android.os.Bundle
 import android.view.View
 import android.widget.ImageView
+import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.decode.VideoFrameDecoder
 import coil.imageLoader
 import coil.load
 import coil.request.ImageRequest
 import coil.request.videoFrameMicros
+import com.eyepetizer.square.export.databinding.FragmentSquareBinding
 import com.tongsr.base.base.BaseFragment
+import com.tongsr.common.svga.SVGACallback
 import com.tongsr.common.svga.SVGADrawable
 import com.tongsr.common.svga.SVGAImageView
 import com.tongsr.core.util.FileIOUtils
@@ -31,6 +34,9 @@ import java.io.IOException
  * @description 广场
  */
 class SquareFragment : BaseFragment() {
+
+    private val binding by viewBinding(FragmentSquareBinding::bind)
+
     override fun initData(bundle: Bundle?) {
 
     }
@@ -44,18 +50,32 @@ class SquareFragment : BaseFragment() {
 //            .load("file:///android_asset/login_welcome.mp4") {
 //                videoFrameMicros(1000)
 //            }
+        binding.image.callback = object : SVGACallback {
+            override fun onPause() {
+                LogUtils.e("onPause")
+            }
 
+            override fun onFinished() {
+                LogUtils.e("onFinished")
+            }
+
+            override fun onRepeat() {
+                LogUtils.e("onRepeat")
+            }
+
+            override fun onStep(frame: Int, percentage: Double) {
+                LogUtils.e("onStep", frame, percentage)
+            }
+        }
         val request = ImageRequest.Builder(appContext)
             .data("https://github.com/yyued/SVGA-Samples/blob/master/posche.svga?raw=true")
+//            .data("file:///android_asset/kingset.svga")
             .target { drawable ->
                 // Handle the result.
                 LogUtils.e(drawable is SVGADrawable)
                 if (drawable is SVGADrawable) {
-                    contentView.findViewById<SVGAImageView>(R.id.image).apply {
-                        setVideoItem(drawable.videoItem)
-                        startAnimation()
-                    }
-
+                    binding.image.setVideoItem(drawable.videoItem)
+                    binding.image.startAnimation()
                 }
             }
             .build()
