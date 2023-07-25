@@ -29,12 +29,10 @@ class SVGADecoder constructor(
 
     override suspend fun decode() = runInterruptible {
         LogUtils.e("解码SVGA开始", source.file().toFile().isSVGAUnZipFile())
-//        val byteArray = inflate(source.source().buffer.readByteArray())
         val byteArray = bufferedSourceToByteArray(source.source())
         val inflate = inflate(byteArray)
         val movieEntity = MovieEntity.ADAPTER.decode(inflate)
         val videoItem = SVGAVideoEntity(movieEntity, source.file().toFile())
-        LogUtils.e("返回SVGADrawable", movieEntity.toString())
 
         videoItem.prepare({
         }, null)
@@ -44,7 +42,7 @@ class SVGADecoder constructor(
         )
     }
 
-    fun bufferedSourceToByteArray(bufferedSource: BufferedSource): ByteArray {
+    private fun bufferedSourceToByteArray(bufferedSource: BufferedSource): ByteArray {
         val buffer = Buffer()
         bufferedSource.readAll(buffer)
         return buffer.readByteArray()
@@ -73,7 +71,7 @@ class SVGADecoder constructor(
         override fun create(
             result: SourceResult, options: Options, imageLoader: ImageLoader
         ): Decoder {
-            LogUtils.e("创建SVGADecoder")
+            LogUtils.e("创建SVGADecoder", result.dataSource)
             return SVGADecoder(result.source, options)
         }
 
@@ -87,9 +85,7 @@ class SVGADecoder constructor(
     }
 
     companion object {
-        private const val MIME_TYPE_SVG = "image/svg+xml"
-        private const val DEFAULT_SIZE = 512f
-        const val CSS_KEY = "coil#css"
+
     }
 
 }

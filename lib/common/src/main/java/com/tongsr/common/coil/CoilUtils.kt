@@ -50,14 +50,14 @@ object CoilUtils {
             }
             .components {
                 // 自动检测格式加载，如果无法加载要显式调用
-//                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
-//                    add(ImageDecoderDecoder.Factory())
-//                } else {
-//                    add(GifDecoder.Factory())
-//                }
-//                add(SvgDecoder.Factory())
-                add(SVGADecoder.Factory())
-//                add(VideoFrameDecoder.Factory())
+                /*if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
+                add(SvgDecoder.Factory())
+                add(VideoFrameDecoder.Factory())
+                add(SVGADecoder.Factory())*/
             }
             .build()
         Coil.setImageLoader(imageLoader)

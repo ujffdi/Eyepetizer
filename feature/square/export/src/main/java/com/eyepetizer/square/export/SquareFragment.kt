@@ -9,10 +9,12 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import coil.decode.VideoFrameDecoder
 import coil.imageLoader
 import coil.load
+import coil.request.CachePolicy
 import coil.request.ImageRequest
 import coil.request.videoFrameMicros
 import com.eyepetizer.square.export.databinding.FragmentSquareBinding
 import com.tongsr.base.base.BaseFragment
+import com.tongsr.common.coil.loadPicture
 import com.tongsr.common.svga.SVGACallback
 import com.tongsr.common.svga.SVGADrawable
 import com.tongsr.common.svga.SVGAImageView
@@ -44,39 +46,39 @@ class SquareFragment : BaseFragment() {
     override fun onBindLayout(): Int = R.layout.fragment_square
 
     override fun initView(savedInstanceState: Bundle?, contentView: View) {
-//        contentView.findViewById<ImageView>(R.id.image).loadPicture("https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?resize=476%2C280&ssl=1")
+        /*contentView.findViewById<ImageView>(R.id.image).loadPicture("https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?resize=476%2C280&ssl=1")
 
-//        contentView.findViewById<ImageView>(R.id.image)
-//            .load("file:///android_asset/login_welcome.mp4") {
-//                videoFrameMicros(1000)
-//            }
-        binding.image.callback = object : SVGACallback {
-            override fun onPause() {
-                LogUtils.e("onPause")
-            }
+        contentView.findViewById<ImageView>(R.id.image)
+            .load("file:///android_asset/login_welcome.mp4") {
+                videoFrameMicros(1000)
+            }*/
 
-            override fun onFinished() {
-                LogUtils.e("onFinished")
-            }
+        loadSvga()
 
-            override fun onRepeat() {
-                LogUtils.e("onRepeat")
-            }
-
-            override fun onStep(frame: Int, percentage: Double) {
-                LogUtils.e("onStep", frame, percentage)
+        binding.image.setOnClickListener {
+            if (binding.image.isAnimating) {
+                binding.image.stopAnimation()
+                binding.image.clear()
+            } else {
+                loadSvga()
             }
         }
+    }
+
+    private fun loadSvga() {
         val request = ImageRequest.Builder(appContext)
-            .data("https://github.com/yyued/SVGA-Samples/blob/master/posche.svga?raw=true")
-//            .data("file:///android_asset/kingset.svga")
+            //.data("https://github.com/yyued/SVGA-Samples/blob/master/posche.svga?raw=true")
+            .data("https://img.lamilive.com/Fpnvvuj0SldQSTDdkxw5Vn39CUFB?imageslim%7CimageView2/0/w/0/h/0/format/webp")
+            //.data("file:///android_asset/kingset.svga")
+            .listener { request, result ->
+                LogUtils.e("request: $request, result: $result", result.diskCacheKey, result.memoryCacheKey, result.dataSource)
+            }
             .target { drawable ->
-                // Handle the result.
-                LogUtils.e(drawable is SVGADrawable)
                 if (drawable is SVGADrawable) {
                     binding.image.setVideoItem(drawable.videoItem)
                     binding.image.startAnimation()
                 }
+                binding.image.setImageDrawable(drawable)
             }
             .build()
         val disposable = appContext.imageLoader.enqueue(request)
@@ -86,35 +88,5 @@ class SquareFragment : BaseFragment() {
 
     }
 
-    private fun convertAssetToFile(context: Context, assetFileName: String): File? {
-        val assetManager = context.assets
-        var outputFile: File? = null
-
-        try {
-            val inputStream = assetManager.open(assetFileName)
-
-            // Create a temporary file in the app's cache directory
-            val outputDir = context.cacheDir
-            outputFile = File.createTempFile("temp_", null, outputDir)
-
-            val outputStream = FileOutputStream(outputFile)
-
-            // Copy the contents from the input stream to the output stream
-            val buffer = ByteArray(1024)
-            var read: Int
-            while (inputStream.read(buffer).also { read = it } != -1) {
-                outputStream.write(buffer, 0, read)
-            }
-
-            // Close the streams
-            inputStream.close()
-            outputStream.flush()
-            outputStream.close()
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-
-        return outputFile
-    }
 
 }
