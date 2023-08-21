@@ -68,18 +68,23 @@ class SquareFragment : BaseFragment() {
     private fun loadSvga() {
         val request = ImageRequest.Builder(appContext)
             //.data("https://github.com/yyued/SVGA-Samples/blob/master/posche.svga?raw=true")
-            .data("https://img.lamilive.com/Fpnvvuj0SldQSTDdkxw5Vn39CUFB?imageslim%7CimageView2/0/w/0/h/0/format/webp")
+//            .data("https://img.lamilive.com/Fpnvvuj0SldQSTDdkxw5Vn39CUFB")
             //.data("file:///android_asset/kingset.svga")
+//            .data("file:///android_asset/login_welcome.mp4")
+                // gif
+            .data("https://i0.wp.com/www.printmag.com/wp-content/uploads/2021/02/4cbe8d_f1ed2800a49649848102c68fc5a66e53mv2.gif?resize=476%2C280&ssl=1")
             .listener { request, result ->
-                LogUtils.e("request: $request, result: $result", result.diskCacheKey, result.memoryCacheKey, result.dataSource)
+                LogUtils.e( result.diskCacheKey, result.memoryCacheKey, result.dataSource)
             }
-            .target { drawable ->
+            /*.target { drawable ->
                 if (drawable is SVGADrawable) {
+                    binding.image.loops = 1
                     binding.image.setVideoItem(drawable.videoItem)
                     binding.image.startAnimation()
                 }
                 binding.image.setImageDrawable(drawable)
-            }
+            }*/
+            .target(binding.image)
             .build()
         val disposable = appContext.imageLoader.enqueue(request)
     }

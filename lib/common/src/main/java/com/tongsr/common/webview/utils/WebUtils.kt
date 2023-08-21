@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
+import java.io.File
 
 object WebUtils {
 

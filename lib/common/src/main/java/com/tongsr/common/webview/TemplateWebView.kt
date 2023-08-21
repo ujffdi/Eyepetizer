@@ -3,7 +3,6 @@ package com.tongsr.common.webview
 import android.content.Context
 import android.util.AttributeSet
 import android.view.ViewGroup
-import com.tongsr.core.component.web.BaseWebView
 
 class TemplateWebView(context: Context, attrs: AttributeSet? = null) : BaseWebView(context, attrs) {
 

@@ -12,7 +12,7 @@ import androidx.annotation.RequiresApi
 import androidx.core.graphics.drawable.toBitmap
 import coil.Coil
 import coil.request.ImageRequest
-import com.tongsr.core.component.web.BaseWebView
+import com.tongsr.common.webview.BaseWebView
 import com.tongsr.common.webview.utils.HttpUtils
 import com.tongsr.common.webview.utils.WebUtils
 import kotlinx.coroutines.*

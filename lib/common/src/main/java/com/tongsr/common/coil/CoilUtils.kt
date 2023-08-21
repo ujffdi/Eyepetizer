@@ -55,9 +55,16 @@ object CoilUtils {
                 } else {
                     add(GifDecoder.Factory())
                 }
-                add(SvgDecoder.Factory())
+
+
+   add(SvgDecoder.Factory())
+                add(SVGADecoder.Factory()) */
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    add(ImageDecoderDecoder.Factory())
+                } else {
+                    add(GifDecoder.Factory())
+                }
                 add(VideoFrameDecoder.Factory())
-                add(SVGADecoder.Factory())*/
             }
             .build()
         Coil.setImageLoader(imageLoader)

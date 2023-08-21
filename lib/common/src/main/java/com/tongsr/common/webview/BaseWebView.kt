@@ -1,4 +1,4 @@
-package com.tongsr.core.component.web
+package com.tongsr.common.webview
 
 import android.annotation.SuppressLint
 import android.content.Context
@@ -13,7 +13,6 @@ import android.widget.Toast
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleEventObserver
 import androidx.lifecycle.LifecycleOwner
-import com.tongsr.common.webview.WebViewPool
 import com.tongsr.common.webview.code.BaseWebChromeClient
 import com.tongsr.common.webview.code.BaseWebViewClient
 import com.tongsr.common.webview.utils.WebUtils

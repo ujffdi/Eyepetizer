@@ -4,7 +4,6 @@ import android.content.Context
 import android.content.MutableContextWrapper
 import com.tongsr.common.webview.code.BaseWebChromeClient
 import com.tongsr.common.webview.code.BaseWebViewClient
-import com.tongsr.core.component.web.BaseWebView
 import timber.log.Timber
 import java.util.*
 
